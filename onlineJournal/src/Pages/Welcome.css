@@ -1,0 +1,34 @@
+#root {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+}
+
+.App {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.mainContent {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url('./Background.webp'); 
+    background-size: 101%; /* Adjust this value as needed */
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.ContentTitel {
+    width: 70vw;
+    color: black;
+    background-color: lightgrey;
+    padding: 0 40px;
+    margin: 20px 0; /* Adjusted for equal spacing */
+    border-radius: 25px;
+}
+

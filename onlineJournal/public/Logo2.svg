@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="180.03296mm"
+   height="193.45996mm"
+   viewBox="0 0 180.03296 193.45996"
+   version="1.1"
+   id="svg1"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs1" />
+  <g
+     id="layer1"
+     transform="translate(-21.547005,-26.448645)">
+    <rect
+       style="fill:#000000;fill-opacity:1;stroke-width:3.21035"
+       id="rect5"
+       width="180.03296"
+       height="193.45996"
+       x="21.547005"
+       y="26.448645" />
+    <rect
+       style="fill:#ffffff;fill-opacity:1;stroke-width:0.236259"
+       id="rect4"
+       width="170.33243"
+       height="183.58777"
+       x="26.375652"
+       y="31.253904" />
+    <rect
+       style="fill:#00737a;fill-opacity:1;stroke-width:0.264583"
+       id="rect1"
+       width="160.278"
+       height="38.223938"
+       x="31.34363"
+       y="35.930508" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:38.6774px;line-height:0;font-family:Impact;-inkscape-font-specification:Impact;fill:#000000;stroke-width:0.341272"
+       x="40.464859"
+       y="60.807579"
+       id="text1"
+       transform="scale(0.8601657,1.1625667)"><tspan
+         id="tspan1"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:38.6774px;line-height:0;font-family:Cambria;-inkscape-font-specification:Cambria;fill:#ffffff;stroke-width:0.341272"
+         x="36.464859"
+         y="60.807579">D'POSCHT</tspan></text>
+    <rect
+       style="fill:#000000;fill-opacity:1;stroke-width:0.413789"
+       id="rect2"
+       width="160.27718"
+       height="135.79968"
+       x="31.344465"
+       y="74.151543" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:73.6447px;line-height:0;font-family:Georgia;-inkscape-font-specification:Georgia;fill:#ffffff;fill-opacity:1;stroke-width:0.767132"
+       x="32.541641"
+       y="136.46594"
+       id="text2"
+       transform="scale(1.0191234,0.98123545)"><tspan
+         id="tspan2"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Cambria;-inkscape-font-specification:Cambria;fill:#ffffff;fill-opacity:1;stroke-width:0.767132"
+         x="32.541641"
+         y="136.46594">D</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:195.022px;line-height:0;font-family:Cambria;-inkscape-font-specification:Cambria;fill:#ffffff;fill-opacity:1;stroke-width:1.72078"
+       x="67.298073"
+       y="213.58406"
+       id="text4"
+       transform="scale(1.0459192,0.95609678)"><tspan
+         id="tspan4"
+         style="fill:#ffffff;fill-opacity:1;stroke-width:1.72078"
+         x="67.298073"
+         y="213.58406">P</tspan></text>
+  </g>
+</svg>

@@ -1,0 +1,60 @@
+.header {
+    background: linear-gradient(to right, #008B8B, #2E3192);
+    color: white;
+    width: 100%;
+    display: flex;
+    padding: 0;
+    justify-content: space-between;
+  }
+
+  .Logo{
+    color: white;
+  }
+
+  h1{
+    margin-left: 20px;
+  }
+
+  .header-align-left{
+    display: flex;
+    align-items: center;
+    padding-left: 2rem;
+  }
+
+  .header-align-right{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-right: 50px;
+    width: 30vw;
+  }
+
+  .header nav {
+    width: 100%;
+  }
+  
+  .header nav ul {
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .header nav ul li {
+    display: inline;
+    padding: 10px 20px;
+    outline: solid 2px white;
+  }
+
+  .header nav ul li:hover {
+    display: inline;
+    padding: 10px 20px;
+    outline: solid 2px white;
+    background: linear-gradient(45deg, #2E3192, #1BFFFF);
+  }
+
+  .header nav ul li a {
+    color: white;
+    text-decoration: none;
+  }
