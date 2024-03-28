@@ -2,6 +2,7 @@ import { useState } from 'react'
 import './AddArticle.css'
 import Header from '../components/Header.jsx'
 import Footer from '../components/Footer.jsx'
+import supabase from '../supabaseClient';
 
 function AddArticle() {
 
@@ -10,10 +11,22 @@ function AddArticle() {
   const [body, setBody] = useState('');
 
   // Eine Funktion, um die Formulardaten zu verarbeiten
-  const handleSubmit = (event) => {
-    event.preventDefault(); // Verhindert die Standard-Formularabsendung
-    console.log('Eingereicht:', { title, lead, body });
-  }
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    const { data, error } = await supabase
+      .from('articles')
+      .insert([
+        { title, lead, body },
+      ]);
+
+    if (error) {
+      console.error('Es gab einen Fehler beim Einreichen Ihres Artikels:', error);
+    } else {
+      console.log('Artikel erfolgreich eingereicht:', data);
+      // Hier können Sie den Nutzer informieren oder das Formular zurücksetzen
+    }
+  };
   
 
   return (
