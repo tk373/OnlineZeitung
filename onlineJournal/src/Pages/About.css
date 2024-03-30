@@ -1,0 +1,51 @@
+/* About.css */
+#root {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+}
+
+.App {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.aboutContent {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url('./BackgroundNew.webp'); /* Use an appropriate background image */
+    background-size: 10%;
+    background-position: center;
+    background-repeat: repeat;
+  }
+  
+  .contentWrapper {
+    width: 80vw;
+    background-color: lightgrey; /* Semi-transparent white background */
+    padding: 0 40px;
+    margin: 20px 0;
+    border-radius: 25px;
+    color: Black;
+    line-height: 1.6; /* Improved readability for lines of text */
+    font-size: 170%;
+  }
+  
+  h1 {
+     /* Sandy beige color for headings */
+     font-size: 100%;
+    margin-bottom: 24px;
+  }
+  
+  /* Responsive adjustments might be required for smaller screens */
+  @media (max-width: 768px) {
+    .contentWrapper {
+      width: 90vw;
+      padding: 20px;
+    }
+  }
+  
