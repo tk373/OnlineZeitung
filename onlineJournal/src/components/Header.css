@@ -43,18 +43,26 @@
   
   .header nav ul li {
     display: inline;
-    padding: 10px 20px;
     outline: solid 2px #00737a;
   }
 
   .header nav ul li:hover {
     display: inline;
-    padding: 10px 20px;
+    color: white;
     outline: solid 2px white;
     background: linear-gradient(45deg, #2E3192, #1BFFFF);
   }
 
   .header nav ul li a {
+    display: block;
+    padding: 10px 20px;
     color: #00737a;
+    text-decoration: none;
+  }
+
+  .header nav ul li a:hover {
+    display: block;
+    padding: 10px 20px;
+    color: white;
     text-decoration: none;
   }
