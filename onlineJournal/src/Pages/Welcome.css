@@ -1,34 +1,62 @@
-#root {
-    height: 100vh;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    background-color: white;
-}
+:root {
+    --text: #090909; /* Dark color for text, ensuring good readability */
+    --background: #f7f5f3; /* Light background color, good for areas with lots of text */
+    --primary: #00737A; /* Eye-catching, used for important elements like headers */
+    --secondary: #d4b192; /* Secondary color, softer, used for accents and possibly backgrounds */
+    --accent: #d4955f; /* Accent color, good for calls to action or highlighting */
+  }
+  
+  #root {
+      height: 100vh;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      background-color: var(--background);
+  }
 
-.App {
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
+  
+  
+  .App {
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+      background-color: var(--background); /* Consistent background across the app */
+  }
+  
+  .mainContent {
+      flex-grow: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: var(--secondary);
+      
+      background-image: url('./BackgroundNew.webp');
+      background-size: 10%;
+      background-position: center;
+      background-repeat: repeat;
+      
+  }
+  
+  .ContentTitel {
+      width: 80vw;
+      color: var(--text); /* Ensures text is easily readable */
+      background-color: var(--background); /* A lighter background for the content area */
+      padding: 20px 40px; /* Adjust padding for better spacing */
+      margin: 20px 0; /* Keeps the adjusted spacing */
+      border-radius: 25px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* Adds a subtle shadow for depth */
+      font-size: 170%;
+  }
+  
+  h1 {
+      color: var(--secondary); /* Makes the title stand out */
+  }
+  
+  p {
+      color: var(--text); /* Ensures paragraph text is easily readable */
+  }
+  
+  body, h1, p, a {
+    color: var(--text); /* This applies the text color universally */
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif /* Specify your desired font family here */
 }
-
-.mainContent {
-    flex-grow: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-image: url('./Background.webp'); 
-    background-size: 101%; /* Adjust this value as needed */
-    background-position: center;
-    background-repeat: no-repeat;
-}
-
-.ContentTitel {
-    width: 70vw;
-    color: black;
-    background-color: lightgrey;
-    padding: 0 40px;
-    margin: 20px 0; /* Adjusted for equal spacing */
-    border-radius: 25px;
-}
-

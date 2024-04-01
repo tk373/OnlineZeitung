@@ -1,68 +1,66 @@
+:root {
+  --text: #090909; /* Ideal for text for high contrast on light backgrounds */
+  --background: #f7f5f3; /* Light background color */
+  --primary: #00737A; /* Suitable for interactive elements or highlights */
+  --secondary: #d4b192; /* Can be used for less emphasized elements */
+  --accent: #d4955f; /* Catchy for calls to action or to draw attention */
+}
+
 .header {
-    background: linear-gradient(to right, #cbb091, #e1a96f);
-    color: white;
-    width: 100%;
-    display: flex;
-    padding: 0;
-    justify-content: space-between;
-  }
+  background: var(--primary); /* Solid primary color for header background */
+  color: var(--background); /* Light color for text in the header for contrast */
+  width: 100%;
+  display: flex;
+  padding: 0;
+  justify-content: space-between;
+}
 
-  .Logo{
-    color: white;
-  }
+.Logo {
+  color: var(--background); /* Ensures logo stands out against the primary color */
+}
 
-  h1{
-    margin-left: 20px;
-  }
+h1 {
+  margin-left: 20px;
+  color: var(--text); /* Ensures high contrast and readability */
+}
 
-  .header-align-left{
-    display: flex;
-    align-items: center;
-    padding-left: 2rem;
-  }
+.header-align-left, .header-align-right {
+  display: flex;
+  align-items: center;
+  padding-left: 2rem; /* Only for .header-align-left */
+  padding-right: 50px; /* Only for .header-align-right */
+  width: 30vw; /* Only for .header-align-right */
+}
 
-  .header-align-right{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding-right: 50px;
-    width: 30vw;
-  }
+.header nav {
+  width: 100%;
+}
 
-  .header nav {
-    width: 100%;
-  }
-  
-  .header nav ul {
-    display: flex;
-    justify-content: space-evenly;
-    width: 100%;
-    list-style-type: none;
-    padding: 0;
-  }
-  
-  .header nav ul li {
-    display: inline;
-    outline: solid 2px #00737a;
-  }
+.header nav ul {
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+  list-style-type: none;
+  padding: 0;
+}
 
-  .header nav ul li:hover {
-    display: inline;
-    color: white;
-    outline: solid 2px white;
-    background: linear-gradient(45deg, #2E3192, #1BFFFF);
-  }
+.header nav ul li {
+  display: inline;
+  outline: solid 2px var(--primary); /* Keeps the primary color for consistency */
+}
 
-  .header nav ul li a {
-    display: block;
-    padding: 10px 20px;
-    color: #00737a;
-    text-decoration: none;
-  }
+.header nav ul li:hover {
+  color: var(--background); /* For better contrast on hover */
+  background: var(--accent); /* Solid accent color to draw attention */
+}
 
-  .header nav ul li a:hover {
-    display: block;
-    padding: 10px 20px;
-    color: white;
-    text-decoration: none;
-  }
+.header nav ul li a {
+  display: block;
+  padding: 10px 20px;
+  color: var(--secondary); /* Secondary color for links to stand out */
+  text-decoration: none;
+}
+
+.header nav ul li a:hover {
+  color: var(--background); /* For readability against the accent background */
+}

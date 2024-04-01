@@ -1,51 +1,88 @@
 /* About.css */
+:root {
+  --text: #090909;
+  --background: #f7f5f3;
+  --primary: #00737A;
+  --secondary: #d4b192;
+  --accent: #d4955f;
+}
+
 #root {
-    height: 100vh;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    background-color: white;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--background);
 }
 
 .App {
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  background-color: var(--background);
 }
 
 .aboutContent {
-    flex-grow: 1;
-    display: flex;
-    justify-content: center;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--secondary);
+  background-image: url('./BackgroundNew.webp');
+  background-size: 10%;
+  background-position: center;
+  background-repeat: repeat;
+}
+
+.titleWrapper {
+  width: 80vw;
+  background-color: var(--background); /* Individual box color */
+  padding: 20px;
+  margin: 20px 0;
+  border-radius: 25px;
+  color: var(--text);
+  line-height: 1.6;
+  font-size: 170%;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Adding subtle shadow for depth */
+}
+
+.textWrapper {
+  display: flex;
+  justify-content: space-around;
+  width: 80vw;
+}
+
+.textSegment {
+  background-color: var(--background); /* Individual box color */
+  padding: 20px;
+  margin: 10px;
+  border-radius: 25px;
+  color: var(--text);
+  line-height: 1.6;
+  font-size: 170%;
+  flex: 1; /* Each box will take equal space */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Adding subtle shadow for depth */
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Center the text vertically */
+}
+
+h1 {
+  font-size: 2em; /* Adjusted font size for emphasis */
+  margin-bottom: 0.5em;
+}
+
+@media (max-width: 768px) {
+  .titleWrapper, .textWrapper {
+    width: 90vw;
+    flex-direction: column;
     align-items: center;
-    background-image: url('./BackgroundNew.webp'); /* Use an appropriate background image */
-    background-size: 10%;
-    background-position: center;
-    background-repeat: repeat;
   }
-  
-  .contentWrapper {
-    width: 80vw;
-    background-color: lightgrey; /* Semi-transparent white background */
-    padding: 0 40px;
-    margin: 20px 0;
-    border-radius: 25px;
-    color: Black;
-    line-height: 1.6; /* Improved readability for lines of text */
-    font-size: 170%;
+
+  .textSegment {
+    width: 100%;
+    margin: 10px 0;
   }
-  
-  h1 {
-     /* Sandy beige color for headings */
-     font-size: 100%;
-    margin-bottom: 24px;
-  }
-  
-  /* Responsive adjustments might be required for smaller screens */
-  @media (max-width: 768px) {
-    .contentWrapper {
-      width: 90vw;
-      padding: 20px;
-    }
-  }
-  
+}

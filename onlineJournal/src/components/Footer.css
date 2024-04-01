@@ -1,3 +1,13 @@
+:root {
+    --text: #090909; /* Ideal for text for high contrast on light backgrounds */
+    --background: #f7f5f3; /* Light background color */
+    --primary: #00737A; /* Suitable for interactive elements or highlights */
+    --secondary: #d4b192; /* Can be used for less emphasized elements */
+    --accent: #d4955f; /* Catchy for calls to action or to draw attention */
+  }
+  
+
+
 .footer {
     width: 100%;
     text-align: center;
