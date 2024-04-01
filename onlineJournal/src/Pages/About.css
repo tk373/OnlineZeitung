@@ -37,10 +37,10 @@
 
 .titleWrapper {
   width: 80vw;
-  background-color: var(--background); /* Individual box color */
+  background-color: var(--primary); /* Individual box color */
   padding: 20px;
   margin: 20px 0;
-  border-radius: 25px;
+  /* border-radius: 25px; */
   color: var(--text);
   line-height: 1.6;
   font-size: 170%;
@@ -58,7 +58,7 @@
   background-color: var(--background); /* Individual box color */
   padding: 20px;
   margin: 10px;
-  border-radius: 25px;
+  /* border-radius: 25px; */
   color: var(--text);
   line-height: 1.6;
   font-size: 170%;
@@ -85,4 +85,19 @@ h1 {
     width: 100%;
     margin: 10px 0;
   }
+}
+
+
+/* Nur für show */
+
+.textWrapper .textSegment:nth-child(1) {
+  background-color: var(--background); /* Primärfarbe */
+}
+
+.textWrapper .textSegment:nth-child(2) {
+  background-color: var(--secondary); /* Sekundärfarbe */
+}
+
+.textWrapper .textSegment:nth-child(3) {
+  background-color: var(--accent); /* Akzentfarbe */
 }
