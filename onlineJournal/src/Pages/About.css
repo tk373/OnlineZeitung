@@ -1,18 +1,11 @@
 /* About.css */
-:root {
-  --text: #090909;
-  --background: #f7f5f3;
-  --primary: #00737A;
-  --secondary: #d4b192;
-  --accent: #d4955f;
-}
 
 #root {
-  height: 100vh;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  background-color: var(--background);
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--background);
 }
 
 .App {
@@ -28,22 +21,23 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: var(--secondary);
-  background-image: url('./BackgroundNew.webp');
+  background-color: var(--background);
+
+  /* background-image: url('./BackgroundNew.webp');
   background-size: 10%;
   background-position: center;
-  background-repeat: repeat;
+  background-repeat: repeat; */
 }
 
 .titleWrapper {
   width: 80vw;
-  background-color: var(--primary); /* Individual box color */
+  background-color: var(--contentBackground); /* Individual box color */
   padding: 20px;
   margin: 20px 0;
   /* border-radius: 25px; */
   color: var(--text);
   line-height: 1.6;
-  font-size: 170%;
+  font-size: 130%;
   text-align: center;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Adding subtle shadow for depth */
 }
@@ -55,13 +49,13 @@
 }
 
 .textSegment {
-  background-color: var(--background); /* Individual box color */
+  background-color: var(--contentBackground); /* Individual box color */
   padding: 20px;
   margin: 10px;
   /* border-radius: 25px; */
   color: var(--text);
   line-height: 1.6;
-  font-size: 170%;
+  font-size: 130%;
   flex: 1; /* Each box will take equal space */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Adding subtle shadow for depth */
   display: flex;
@@ -90,14 +84,3 @@ h1 {
 
 /* Nur für show */
 
-.textWrapper .textSegment:nth-child(1) {
-  background-color: var(--background); /* Primärfarbe */
-}
-
-.textWrapper .textSegment:nth-child(2) {
-  background-color: var(--secondary); /* Sekundärfarbe */
-}
-
-.textWrapper .textSegment:nth-child(3) {
-  background-color: var(--accent); /* Akzentfarbe */
-}

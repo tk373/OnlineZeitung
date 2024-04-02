@@ -1,11 +1,4 @@
-:root {
-    --text: #090909; /* Dark color for text, ensuring good readability */
-    --background: white;
-    --contentBackground: #f9f9f9; /* Light background color, good for areas with lots of text */
-    --primary: #00737A; /* Eye-catching, used for important elements like headers */
-    --secondary: #d4b192; /* Secondary color, softer, used for accents and possibly backgrounds */
-    --accent: #d4955f; /* Accent color, good for calls to action or highlighting */
-  }
+
   #root {
       height: 100vh;
       width: 100%;
@@ -41,7 +34,7 @@
       margin: 20px 0; /* Keeps the adjusted spacing */
       /* border-radius: 25px; */
       box-shadow: 0 8px 8px rgba(0,0,0,0.1); /* Adds a subtle shadow for depth */
-      font-size: 170%;
+      font-size: 130%;
   }
   
   h1 {

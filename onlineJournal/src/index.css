@@ -18,7 +18,16 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  --text: #090909; /* Dark color for text, ensuring good readability */
+  --background: #f9f9f9;
+  --contentBackground: white; /* Light background color, good for areas with lots of text */
+  --primary: #00737A; /* Eye-catching, used for important elements like headers */
+  --secondary: #d4b192; /* Secondary color, softer, used for accents and possibly backgrounds */
+  --accent: #d4955f; /* Accent color, good for calls to action or highlighting */
 }
+
+
 
 a {
   font-weight: 500;
