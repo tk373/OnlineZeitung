@@ -34,13 +34,12 @@ function Welcome() {
         <Header></Header>
       </header>
       <div className="mainContent">
-        <Card className="max-w-[80vw]">
-          <CardHeader className="flex gap-3">
+        <Card Card className="textSegment">
+          <CardHeader>
             <div className="flex flex-col">
-              <p className="text-7xl font-bold">Herzlich willkomme uf de Homepage vo de Poscht</p>
+              <h1 className="text-7xl">Herzlich willkomme uf de Homepage vo de Poscht</h1>
             </div>
           </CardHeader>
-          <Divider />
           <CardBody>
             <p className="text-2xl">
               Ihrer vertrauenswürdigen Quelle für Nachrichten und Analysen. Bei uns finden Sie tiefgehende Berichterstattung zu den wichtigsten Themen unserer Zeit – von lokalen Ereignissen bis hin zu globalen Entwicklungen.
