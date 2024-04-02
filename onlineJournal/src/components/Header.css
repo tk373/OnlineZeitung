@@ -44,12 +44,16 @@ h1 {
 .header nav ul li a {
   display: block;
   padding: 10px 20px;
-  background-color: var(--primary);
-  color: var(--background); /* Secondary color for links to stand out */
+  /* background-color: var(--primary); */
+  color: var(--primary); /* Secondary color for links to stand out */
   text-decoration: none; 
-  border-radius: 10px; 
+  border-radius: 7px; 
+  border: solid var(--primary) 2px;
+
 }
 
-.header nav ul li a:hover {
-  color: var(--background); /* For readability against the accent background */
+.header nav ul li a:hover{
+  transition: 0.5s;
+  background-color: var(--primary);
+  color: var(--background);
 }

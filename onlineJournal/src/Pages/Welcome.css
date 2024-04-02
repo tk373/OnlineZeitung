@@ -12,6 +12,7 @@
       flex-direction: column;
       flex-grow: 1;
       background-color: var(--background);
+      height: 100vh;
   }
   
   .mainContent {
@@ -23,7 +24,6 @@
       background-size: 10%;
       background-position: center;
       background-repeat: repeat;
-      
   }
   
   .ContentTitel {
