@@ -1,10 +1,31 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import './Welcome.css'
 import Header from '../components/Header.jsx'
 import Footer from '../components/Footer.jsx'
+import supabase from '../supabaseClient.js'
 
 function Welcome() {
   
+  const [articles, setArticles] = useState([]);
+
+  // Funktion zum Abrufen der Artikel aus Supabase
+  const fetchArticles = async () => {
+    const { data, error } = await supabase
+      .from('articles')
+      .select('*');
+
+    if (error) {
+      console.error('Fehler beim Abrufen der Artikel:', error);
+      return;
+    }
+
+    setArticles(data);
+  };
+
+  useEffect(() => {
+    fetchArticles();
+  }, []);
+
 
   return (
     <div className="App">
@@ -22,6 +43,13 @@ function Welcome() {
             <p>
             Wir sind stolz darauf, Ihnen eine Plattform bieten zu können, auf der Journalismus noch echte Bedeutung hat. Entdecken Sie mit uns die Geschichten, die die Welt bewegen. Vielen Dank, dass Sie uns gewählt haben, um informiert zu bleiben.
             </p>
+            {articles.map((article) => (
+              <div key={article.id}>
+                <h2>{article.title}</h2>
+                <p>{article.lead}</p>
+                <div>{article.body}</div>
+              </div>
+            ))}
         </div>
       </div>
       <Footer/>

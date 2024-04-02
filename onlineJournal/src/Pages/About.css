@@ -54,13 +54,15 @@
   margin: 10px;
   /* border-radius: 25px; */
   color: var(--text);
-  line-height: 1.6;
-  font-size: 130%;
   flex: 1; /* Each box will take equal space */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Adding subtle shadow for depth */
   display: flex;
   flex-direction: column;
   justify-content: center; /* Center the text vertically */
+}
+
+.textSegment p{
+  font-size: 90%;
 }
 
 h1 {
