@@ -10,6 +10,7 @@
 
 .Logo {
   color: var(--background); /* Ensures logo stands out against the primary color */
+  margin-top: 20px;
 }
 
 h1 {
