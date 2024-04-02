@@ -4,6 +4,8 @@ import Header from '../components/Header.jsx'
 import Footer from '../components/Footer.jsx'
 import supabase from '../supabaseClient';
 import {Button} from "@nextui-org/button";
+import {Textarea} from "@nextui-org/react";
+
 
 function AddArticle() {
 
@@ -57,12 +59,21 @@ function AddArticle() {
         />
       </div>
       <div>
-        <label htmlFor="body">Haupttext:</label>
-        <textarea
+        {/* <textarea
           id="body"
           value={body}
           onChange={(e) => setBody(e.target.value)}
           required
+        /> */}
+        <Textarea
+        color="secondary"
+        isRequired
+        label="Body"
+        placeholder="Enter your Textbody"
+        labelPlacement="outside"
+        className="max-w-xs light"
+        value={body}
+        onChange={(e) => setBody(e.target.value)}
         />
       </div>
       <Button type="submit">Press me</Button>
