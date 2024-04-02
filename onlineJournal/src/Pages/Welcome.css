@@ -1,11 +1,11 @@
 :root {
     --text: #090909; /* Dark color for text, ensuring good readability */
-    --background: #f7f5f3; /* Light background color, good for areas with lots of text */
+    --background: white;
+    --contentBackground: #f9f9f9; /* Light background color, good for areas with lots of text */
     --primary: #00737A; /* Eye-catching, used for important elements like headers */
     --secondary: #d4b192; /* Secondary color, softer, used for accents and possibly backgrounds */
     --accent: #d4955f; /* Accent color, good for calls to action or highlighting */
   }
-  
   #root {
       height: 100vh;
       width: 100%;
@@ -13,14 +13,12 @@
       flex-direction: column;
       background-color: var(--background);
   }
-
-  
   
   .App {
       display: flex;
       flex-direction: column;
       flex-grow: 1;
-      background-color: var(--background); /* Consistent background across the app */
+      background-color: var(--background);
   }
   
   .mainContent {
@@ -28,9 +26,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      background-color: var(--secondary);
-      
-      background-image: url('./BackgroundNew3tra.webp');
+      background-color: var(--background);
       background-size: 10%;
       background-position: center;
       background-repeat: repeat;
@@ -40,11 +36,11 @@
   .ContentTitel {
       width: 80vw;
       color: var(--text); /* Ensures text is easily readable */
-      background-color: var(--background); /* A lighter background for the content area */
+      background-color: var(--contentBackground); /* A lighter background for the content area */
       padding: 20px 40px; /* Adjust padding for better spacing */
       margin: 20px 0; /* Keeps the adjusted spacing */
       /* border-radius: 25px; */
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* Adds a subtle shadow for depth */
+      box-shadow: 0 8px 8px rgba(0,0,0,0.1); /* Adds a subtle shadow for depth */
       font-size: 170%;
   }
   
@@ -58,5 +54,5 @@
   
   body, h1, p, a {
     color: var(--text); /* This applies the text color universally */
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif /* Specify your desired font family here */
+    font-family: Cambria, Cochin, New Roman, serif;
 }

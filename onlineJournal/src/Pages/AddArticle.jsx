@@ -3,6 +3,7 @@ import './AddArticle.css'
 import Header from '../components/Header.jsx'
 import Footer from '../components/Footer.jsx'
 import supabase from '../supabaseClient';
+import {Button} from "@nextui-org/button";
 
 function AddArticle() {
 
@@ -64,7 +65,7 @@ function AddArticle() {
           required
         />
       </div>
-      <button type="submit">Artikel einreichen</button>
+      <Button type="submit">Press me</Button>
     </form>
     </div>
     <Footer/>

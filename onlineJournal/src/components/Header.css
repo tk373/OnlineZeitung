@@ -1,13 +1,14 @@
 :root {
   --text: #090909; /* Ideal for text for high contrast on light backgrounds */
-  --background: #f7f5f3; /* Light background color */
+  --background: white;
+  --contentBackground: #f9f9f9;
   --primary: #00737A; /* Suitable for interactive elements or highlights */
   --secondary: #d4b192; /* Can be used for less emphasized elements */
   --accent: #d4955f; /* Catchy for calls to action or to draw attention */
 }
 
 .header {
-  background: var(--primary); /* Solid primary color for header background */
+  background: var(--background); /* Solid primary color for header background */
   color: var(--background); /* Light color for text in the header for contrast */
   width: 100%;
   display: flex;
@@ -46,19 +47,15 @@ h1 {
 
 .header nav ul li {
   display: inline;
-  outline: solid 2px var(--primary); /* Keeps the primary color for consistency */
-}
-
-.header nav ul li:hover {
-  color: var(--background); /* For better contrast on hover */
-  background: var(--accent); /* Solid accent color to draw attention */
 }
 
 .header nav ul li a {
   display: block;
   padding: 10px 20px;
-  color: var(--secondary); /* Secondary color for links to stand out */
-  text-decoration: none;
+  background-color: var(--primary);
+  color: var(--background); /* Secondary color for links to stand out */
+  text-decoration: none; 
+  border-radius: 10px; 
 }
 
 .header nav ul li a:hover {

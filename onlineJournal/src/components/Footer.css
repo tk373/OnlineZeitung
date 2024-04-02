@@ -1,6 +1,7 @@
 :root {
     --text: #090909; /* Ideal for text for high contrast on light backgrounds */
-    --background: #f7f5f3; /* Light background color */
+    --background: white;
+    --contentBackground: #f9f9f9;
     --primary: #00737A; /* Suitable for interactive elements or highlights */
     --secondary: #d4b192; /* Can be used for less emphasized elements */
     --accent: #d4955f; /* Catchy for calls to action or to draw attention */
@@ -11,9 +12,8 @@
 .footer {
     width: 100%;
     text-align: center;
-    background: linear-gradient(to left, #cbb091, #6b5a4d);
+    background: var(--background);
     padding: 10px 0;
     border-top: 2px;
     border-color: black;
-    color: white;
 }
