@@ -36,6 +36,23 @@
       box-shadow: 0 8px 8px rgba(0,0,0,0.1); /* Adds a subtle shadow for depth */
       font-size: 130%;
   }
+
+  .articlesContainer {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 20px;
+    padding: 20px;
+    width: 100%;
+    max-width: 1200px;
+    margin: auto;
+    margin-top: 40px; /* Adjust as necessary for spacing */
+  }
+  
+  @media (max-width: 768px) {
+    .articlesContainer {
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    }
+  }
   
   h1 {
       color: var(--secondary); /* Makes the title stand out */

@@ -3,6 +3,7 @@ import './Welcome.css'
 import Header from '../components/Header.jsx'
 import Footer from '../components/Footer.jsx'
 import supabase from '../supabaseClient.js'
+import {CardBody, CardHeader, Card} from "@nextui-org/react";
 
 function Welcome() {
   
@@ -43,14 +44,20 @@ function Welcome() {
             <p>
             Wir sind stolz darauf, Ihnen eine Plattform bieten zu können, auf der Journalismus noch echte Bedeutung hat. Entdecken Sie mit uns die Geschichten, die die Welt bewegen. Vielen Dank, dass Sie uns gewählt haben, um informiert zu bleiben.
             </p>
-            {articles.map((article) => (
-              <div key={article.id}>
-                <h2>{article.title}</h2>
-                <p>{article.lead}</p>
-                <div>{article.body}</div>
-              </div>
-            ))}
         </div>
+      </div>
+      <div className="articlesContainer">
+        {articles.map((article) => (
+       <Card key={article.id} hoverable clickable>
+        <CardHeader>
+          <h3>{article.title}</h3>
+        </CardHeader>
+        <CardBody>
+          <p>{article.lead}</p>
+          <div>{article.body}</div>
+        </CardBody>
+      </Card>
+      ))}
       </div>
       <Footer/>
     </div>
