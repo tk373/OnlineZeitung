@@ -22,7 +22,6 @@ h1 {
   align-items: center;
   padding-left: 2rem; /* Only for .header-align-left */
   padding-right: 50px; /* Only for .header-align-right */
-  width: 30vw; /* Only for .header-align-right */
 }
 
 .header nav {
@@ -39,6 +38,7 @@ h1 {
 
 .header nav ul li {
   display: inline;
+  padding-left: 10px;
 }
 
 .header nav ul li a {

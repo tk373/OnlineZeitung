@@ -15,6 +15,8 @@ function Header() {
             <li><a href="./">Diheime</a></li>
             <li><a href="./About">Über eus</a></li>
             <li><a href="#">Kontakt</a></li>
+            <li><a href="#">Abo</a></li>
+            <li><a href="./Add">Hinzufügen</a></li>
           </ul>
         </nav>
        </div>
