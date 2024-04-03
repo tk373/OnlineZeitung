@@ -62,7 +62,7 @@ function Welcome() {
               <CardHeader className="flex items-center">
                 <div className="flex gap-3 justify-between">
                   <h2 className="font-bold">{article.title}</h2>
-                  <span>{date} · {formattedTime}</span>
+                  <span className="text-default-400">{date} · {formattedTime}</span>
                 </div>
               </CardHeader>
               <CardBody>
