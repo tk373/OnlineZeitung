@@ -46,18 +46,27 @@ function Welcome() {
             </p>
         </div>
       </div>
+      <div className="bodyContainer">
       <div className="articlesContainer">
-        {articles.map((article) => (
-       <Card key={article.id} hoverable clickable>
-        <CardHeader>
-          <h3>{article.title}</h3>
-        </CardHeader>
-        <CardBody>
-          <p>{article.lead}</p>
-          <div>{article.body}</div>
-        </CardBody>
-      </Card>
-      ))}
+      {articles.map((article) => {
+          // Splitting the ISO string into date and time
+          const [date, time] = article.created_at.split('T');
+          const formattedTime = time.split('.')[0]; // Removing milliseconds for cleaner display
+          return (
+            <Card key={article.id} hoverable clickable>
+              <CardHeader className="flex items-center">
+                <div className="flex gap-3 justify-between">
+                  <h2 className="font-bold">{article.title}</h2>
+                  <span>{date} · {formattedTime}</span>
+                </div>
+              </CardHeader>
+              <CardBody>
+                <p>{article.lead}</p>
+              </CardBody>
+            </Card>
+          );
+        })}
+      </div>
       </div>
       <Footer/>
     </div>
