@@ -18,30 +18,33 @@ function Abo() {
           </CardBody>
         </Card>
         <div className="textWrapper">
-          <Card className="textSegment">
-            <CardHeader>
-              <h2>Generieren</h2>
-            </CardHeader>
-            <CardBody>
-              <p>Generiere tiefgründige, gut recherchierte Artikel zu Themen deiner Wahl. Unsere KI stützt sich auf die neueste Technologie von GPT-4, um dir Inhalte von höchster Qualität zu liefern.</p>
-            </CardBody>
-          </Card>
-          <Card className="textSegment">
-            <CardHeader>
-              <h2>Zusammenfassen</h2>
-            </CardHeader>
-            <CardBody>
-              <p>Erhalte Zusammenfassungen von unseren Artikeln mit der Power von GPT-4. Ideal für schnelles Erfassen von Informationen und zum Gewinnen von Einsichten in kürzester Zeit.</p>
-            </CardBody>
-          </Card>
-          <Card className="textSegment">
-            <CardHeader>
-              <h2>Vertrauen</h2>
-            </CardHeader>
-            <CardBody>
-              <p>Bei dieser revolutionären Technologie kannst du deine eigenen Quellen angeben. So kannst du deine Recherche schneller gestalten und dich auf die Informationen verlassen</p>
-            </CardBody>
-          </Card>
+        <Card className="textSegment">
+          <CardHeader>
+            <img src="./laptop.svg" alt="Generate Icon" style={{ height: '2em', marginRight: '8px', verticalAlign: 'middle' }} />
+            <h2>Generieren</h2>
+          </CardHeader>
+          <CardBody>
+            <p>Generiere tiefgründige, gut recherchierte Artikel zu Themen deiner Wahl. Unsere KI stützt sich auf die neueste Technologie von GPT-4, um dir Inhalte von höchster Qualität zu liefern.</p>
+          </CardBody>
+        </Card>
+        <Card className="textSegment">
+          <CardHeader>
+            <img src="./book.svg" alt="Summarize Icon" style={{ height: '2em', marginRight: '8px', verticalAlign: 'middle' }} />
+            <h2>Zusammenfassen</h2>
+          </CardHeader>
+          <CardBody>
+            <p>Erhalte Zusammenfassungen von unseren Artikeln mit der Power von GPT-4. Ideal für schnelles Erfassen von Informationen und zum Gewinnen von Einsichten in kürzester Zeit.</p>
+          </CardBody>
+        </Card>
+        <Card className="textSegment">
+          <CardHeader>
+            <img src="./trust.svg" alt="Trust Icon" style={{ height: '2em', marginRight: '8px', verticalAlign: 'middle' }} />
+            <h2>Vertrauen</h2>
+          </CardHeader>
+          <CardBody>
+            <p>Bei dieser revolutionären Technologie kannst du deine eigenen Quellen angeben. So kannst du deine Recherche schneller gestalten und dich auf die Informationen verlassen.</p>
+          </CardBody>
+        </Card>
         </div>
       </div>
       <Footer />
