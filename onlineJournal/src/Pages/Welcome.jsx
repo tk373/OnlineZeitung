@@ -71,8 +71,7 @@ function Welcome() {
                 )}
               </CardHeader>
               <CardBody>
-                {/* Title and lead (description) in the body */}
-                <h2 className="font-bold">{article.title}</h2>
+                <h2 className="font-bold text-lg">{article.title}</h2>
                 <p>{article.lead}</p>
               </CardBody>
               <CardFooter>
