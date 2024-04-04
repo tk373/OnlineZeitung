@@ -11,50 +11,15 @@
 
 .Logo {
   color: var(--background); /* Ensures logo stands out against the primary color */
-}
-
-h1 {
+  margin-top: 20px;
   margin-left: 20px;
-  color: var(--text); /* Ensures high contrast and readability */
 }
 
 .header-align-left, .header-align-right {
   display: flex;
-  align-items: center;
-  padding-left: 2rem; /* Only for .header-align-left */
   padding-right: 50px; /* Only for .header-align-right */
 }
 
-.header nav {
-  width: 100%;
-}
-
-.header nav ul {
-  display: flex;
-  justify-content: space-evenly;
-  width: 100%;
-  list-style-type: none;
-  padding: 0;
-}
-
-.header nav ul li {
-  display: inline;
-  padding-left: 10px;
-}
-
-.header nav ul li a {
-  display: block;
-  padding: 10px 20px;
-  /* background-color: var(--primary); */
-  color: var(--primary); /* Secondary color for links to stand out */
-  text-decoration: none; 
-  border-radius: 7px; 
-  border: solid var(--primary) 2px;
-
-}
-
-.header nav ul li a:hover{
-  transition: 0.5s;
-  background-color: var(--primary);
-  color: var(--background);
+.nav-button{
+  padding-left: 20px;
 }

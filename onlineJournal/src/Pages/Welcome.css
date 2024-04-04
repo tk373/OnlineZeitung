@@ -21,30 +21,16 @@
       justify-content: center;
       align-items: center;
       background-color: var(--background);
-      background-size: 10%;
-      background-position: center;
-      background-repeat: repeat;
+      width: 80vw;
+      margin-left: 10vw;
   }
   
-  .ContentTitel {
-      width: 80vw;
-      color: var(--text); /* Ensures text is easily readable */
-      background-color: var(--contentBackground); /* A lighter background for the content area */
-      padding: 20px 40px; /* Adjust padding for better spacing */
-      margin: 20px 0; /* Keeps the adjusted spacing */
-      /* border-radius: 25px; */
-      box-shadow: 0 8px 8px rgba(0,0,0,0.1); /* Adds a subtle shadow for depth */
-      font-size: 130%;
-  }
-
-  .bodyContainer{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
+  
   .articlesContainer {
-    padding: 30px; /* Adjust padding around the grid if necessary */
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(20vw, 1fr));
+    gap: 20px;
+    padding: 20px;
     width: 100%;
     max-width: 1200px; /* This may remain the same or be adjusted based on the overall layout */
     margin: auto;
@@ -69,4 +55,14 @@
   body, h1, p, a {
     color: var(--text); /* This applies the text color universally */
     font-family: Cambria, Cochin, New Roman, serif;
+}
+
+.textSegment {
+  background-color: var(--contentBackground);
+  color: var(--text);
+  flex: 1;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }

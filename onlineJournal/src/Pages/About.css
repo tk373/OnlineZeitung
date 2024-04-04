@@ -22,24 +22,16 @@
   justify-content: center;
   align-items: center;
   background-color: var(--background);
-
-  /* background-image: url('./BackgroundNew.webp');
-  background-size: 10%;
-  background-position: center;
-  background-repeat: repeat; */
 }
 
 .titleWrapper {
   width: 80vw;
-  background-color: var(--contentBackground); 
-  padding: 20px;
-  margin: 20px 0;
-  /* border-radius: 25px; */
+  background-color: var(--contentBackground);
   color: var(--text);
   line-height: 1.6;
   font-size: 130%;
   text-align: center;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Adding subtle shadow for depth */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .textWrapper {
@@ -49,26 +41,20 @@
 }
 
 .textSegment {
-  background-color: var(--contentBackground); /* Individual box color */
-  padding: 20px;
-  margin: 10px;
-  /* border-radius: 25px; */
+  background-color: var(--contentBackground);
   color: var(--text);
-  flex: 1; /* Each box will take equal space */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Adding subtle shadow for depth */
+  flex: 1;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
-  justify-content: center; /* Center the text vertically */
+  justify-content: center;
 }
 
 .textSegment p{
   font-size: 90%;
 }
 
-h1 {
-  font-size: 2em; /* Adjusted font size for emphasis */
-  margin-bottom: 0.5em;
-}
+
 
 @media (max-width: 768px) {
   .titleWrapper, .textWrapper {
@@ -83,6 +69,4 @@ h1 {
   }
 }
 
-
-/* Nur für show */
 
