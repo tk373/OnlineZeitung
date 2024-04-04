@@ -24,6 +24,10 @@
       width: 80vw;
       margin-left: 10vw;
   }
+
+  .bodyContainer{
+    background-color: var(--background);
+  }
   
   
   .articlesContainer {

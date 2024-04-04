@@ -66,7 +66,6 @@ function AddArticle() {
           required
         /> */}
         <Textarea
-        color="secondary"
         isRequired
         label="Body"
         placeholder="Enter your Textbody"
