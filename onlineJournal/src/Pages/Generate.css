@@ -1,0 +1,12 @@
+/* Container, um den Button nach rechts zu schieben */
+.buttonContainer {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%; /* Stellt sicher, dass der Container die volle Breite einnimmt */
+    margin-top: 20px; /* Optional: Fügt etwas Abstand oberhalb des Buttons hinzu */
+}
+
+/* Optional: Stil für den Button */
+.generateButton {
+    /* Deine Button-Stile hier */
+}

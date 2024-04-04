@@ -1,6 +1,6 @@
 
   #root {
-      height: 100vh;
+      height:fit-content;
       width: 100%;
       display: flex;
       flex-direction: column;
@@ -12,7 +12,7 @@
       flex-direction: column;
       flex-grow: 1;
       background-color: var(--background);
-      height: 100vh;
+      min-height: 100vh;
   }
   
   .mainContent {
@@ -36,14 +36,15 @@
     gap: 20px;
     padding: 20px;
     width: 100%;
-    max-width: 1200px;
+    max-width: 1200px; /* This may remain the same or be adjusted based on the overall layout */
     margin: auto;
-    margin-top: 40px; /* Adjust as necessary for spacing */
+    margin: 40px 40px; /* Keep or adjust the top margin for spacing from the content above */
   }
   
   @media (max-width: 768px) {
     .articlesContainer {
-      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      /* You may want to adjust this for smaller screens to ensure the cards don't look too big on mobile */
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
     }
   }
   
