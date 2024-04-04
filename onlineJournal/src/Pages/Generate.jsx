@@ -1,25 +1,68 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import './Generate.css';
 import Header from '../components/Header.jsx';
 import Footer from '../components/Footer.jsx';
 import { Card, CardHeader, CardBody, Tabs, Tab, Accordion, AccordionItem, Input, Button, Textarea } from "@nextui-org/react";
 
 function Generate() {
-    // State für den Artikel-Prompt
     const [articlePrompt, setArticlePrompt] = useState('');
-    
-    // State für die URLs der Quellen
-    const [sourceURLs, setSourceURLs] = useState({1: '', 2: '', 3: ''});
+    const [sourceURLs, setSourceURLs] = useState({ 1: '', 2: '', 3: '' });
+    const [generatedArticle, setGeneratedArticle] = useState('Hier wird dein generierter Artikel angezeigt.');
 
-    // Handler-Funktion für die Änderungen im Artikel-Prompt
+    const headers = {
+
+    }
+
     const handleArticlePromptChange = (event) => {
         setArticlePrompt(event.target.value);
     };
 
-    // Handler-Funktion für die Änderungen in den Quellen-URLs
     const handleSourceChange = (key, value) => {
         setSourceURLs(prevURLs => ({ ...prevURLs, [key]: value }));
     };
+
+    const generateArticle = async () => {
+        const apiURL = 'https://api.openai.com/v1/chat/completions';
+        const config = {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer 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` // Verwenden Sie Ihre OpenAI API-Schlüssel Umgebungsvariable
+            }
+        };
+    
+        // Berechnung der Token-Anzahl basierend auf der gewünschten Wortanzahl
+        // 400 Wörter * 4 Bytes (Token) pro Wort als grobe Schätzung
+        const max_tokens = 400 * 4; 
+    
+        const sourceTexts = Object.values(sourceURLs).map(url => `Quelle: ${url}`).join(' ');
+    
+        const data = {
+            model: "gpt-4-0125-preview",
+            messages: [
+                {
+                    role: "user",
+                    content: `Generiere mir einen Artikel über ${articlePrompt}. Beutze unter anderem die Quellen ${sourceTexts}` // Integration des Prompts und der Quellen
+                }
+            ],
+            temperature: 0.7,
+            max_tokens: max_tokens
+        };
+    
+        try {
+            const response = await axios.post(apiURL, data, config);
+            if(response.data && response.data.choices && response.data.choices.length > 0) {
+                setGeneratedArticle(response.data.choices[0].message.content);
+            } else {
+                setGeneratedArticle('Keine Antwort erhalten. Bitte überprüfen Sie den Prompt und versuchen Sie es erneut.');
+            }
+        } catch (error) {
+            console.error('Fehler bei der Generierung des Artikels:', error);
+            setGeneratedArticle('Es gab einen Fehler bei der Generierung des Artikels. Bitte versuche es später erneut.');
+        }
+    };
+    
+
 
     return (
         <div className="App">
@@ -54,7 +97,7 @@ function Generate() {
                                         ))}
                                     </Accordion>
                                     <div className="buttonContainer">
-                                        <Button radius="full" className="bg-gradient-to-tr from-[#00737A] to-blue-300 text-white shadow-lg">
+                                        <Button onClick={generateArticle} radius="full" className="bg-gradient-to-tr from-[#00737A] to-blue-300 text-white shadow-lg">
                                             Generate
                                         </Button>
                                     </div>
@@ -67,11 +110,12 @@ function Generate() {
                                     <h2>Output</h2>
                                 </CardHeader>
                                 <CardBody>
-                                    <Textarea
+                                    <Textarea className='text-xl'
                                         isReadOnly
                                         variant="bordered"
                                         labelPlacement="outside"
-                                        defaultValue="Hier wird dein generierter Artikel angezeigt."
+                                        value={generatedArticle}
+                                        
                                     />
                                 </CardBody>
                             </Card>
