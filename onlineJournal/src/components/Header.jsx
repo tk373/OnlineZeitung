@@ -12,11 +12,11 @@ function Header() {
       </div>
       <div className="header-align-right">
         <div className='flex gap-4 items-center'>
-          <Button className='nav-button' variant="ghost" size="lg" radius="sm" as="a" href="./">Diheime</Button>
-        <Button className='nav-button' variant="ghost" size="lg" radius="sm" as="a" href="./About">Über eus</Button>
-        <Button className='nav-button' variant="ghost" size="lg" radius="sm" as="a" href="#">Kontakt</Button>
-        <Button className='nav-button' variant="ghost" size="lg" radius="sm" as="a" href="./Abo">Abo</Button>
-        <Button className='nav-button' variant="ghost" size="lg" radius="sm" as="a" href="./Add">Hinzufügen</Button>
+          <Button className='nav-button border-[#00737A]' variant="ghost" size="lg" radius="sm" as="a" href="./ " >Diheime</Button>
+        <Button className='nav-button border-[#00737A]' variant="ghost" size="lg" radius="sm" as="a" href="./About">Über eus</Button>
+        <Button className='nav-button border-[#00737A]' variant="ghost" size="lg" radius="sm" as="a" href="#">Kontakt</Button>
+        <Button className='nav-button border-[#00737A]' variant="ghost" size="lg" radius="sm" as="a" href="./Abo">Abo</Button>
+        <Button className='nav-button border-[#00737A]' variant="ghost" size="lg" radius="sm" as="a" href="./Add">Hinzufügen</Button>
         </div>
         
       </div>
