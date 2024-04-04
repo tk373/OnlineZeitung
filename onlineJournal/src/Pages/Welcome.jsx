@@ -53,21 +53,31 @@ function Welcome() {
       </div>
       <div className="bodyContainer">
       <div className="articlesContainer">
-      {articles.map((article) => {
-          // Splitting the ISO string into date and time
+        {articles.map((article) => {
           const [date, time] = article.created_at.split('T');
-          const formattedTime = time.split('.')[0]; // Removing milliseconds for cleaner display
+          const formattedTime = time.split('.')[0]; 
           return (
             <Card key={article.id} hoverable clickable>
-              <CardHeader className="flex items-center">
-                <div className="flex gap-3 justify-between">
-                  <h2 className="font-bold">{article.title}</h2>
-                  <span className="text-default-400 text-xs" >{date} · {formattedTime}</span>
-                </div>
+              <CardHeader className="flex items-center justify-between">
+                {/* Image in the header. Adjust src to your image URL field */}
+                {article.image_url && (
+                  <Image
+                    src={article.image_url}
+                    alt="Article image"
+                    width="100%"
+                    height="auto"
+                    objectFit="cover"
+                  />
+                )}
               </CardHeader>
               <CardBody>
+                {/* Title and lead (description) in the body */}
+                <h2 className="font-bold">{article.title}</h2>
                 <p>{article.lead}</p>
               </CardBody>
+              <CardFooter>
+                <span className="text-default-400 text-xs">{date} · {formattedTime}</span>
+              </CardFooter>
             </Card>
           );
         })}
