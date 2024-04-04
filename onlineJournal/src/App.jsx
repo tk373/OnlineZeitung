@@ -5,6 +5,7 @@ import AddArticle from './Pages/AddArticle';
 import Welcome from './Pages/Welcome';
 import About from './Pages/About';
 import Abo from './Pages/Abo';
+import Generate from './Pages/Generate';
 
 function App() {
   
@@ -16,6 +17,7 @@ function App() {
         <Route path="/Add" element={<AddArticle />} />
         <Route path="/About" element={<About />} />
         <Route path="/Abo" element={<Abo />} />
+        <Route path='/Generate' element={<Generate />} />
       </Routes>
     </Router>
   )
