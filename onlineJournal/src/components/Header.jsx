@@ -19,7 +19,6 @@ function Header() {
         <Button className='nav-button border-[#00737A]' variant="ghost" size="lg" radius="sm" as="a" href="./Add">Hinzufügen</Button>
         <Button className='nav-button border-[#00737A]' variant="ghost" size="lg" radius="sm" as="a" href="./Generate">Generieren</Button>
         </div>
-        
       </div>
     </header>
   );
