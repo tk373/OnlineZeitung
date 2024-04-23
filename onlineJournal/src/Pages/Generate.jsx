@@ -27,7 +27,6 @@ function Generate() {
         const config = {
             headers: {
                 'Content-Type': 'application/json',
-               // 'Authorization': `Bearer ` // Verwenden Sie Ihre OpenAI API-Schlüssel Umgebungsvariable
             }
         };
     
