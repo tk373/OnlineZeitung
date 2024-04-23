@@ -27,6 +27,7 @@ function Generate() {
         const config = {
             headers: {
                 'Content-Type': 'application/json',
+                'Authorization': "Bearer dachuntdeschlüssel "
             }
         };
     
