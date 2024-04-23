@@ -6,6 +6,7 @@ import Welcome from './Pages/Welcome';
 import About from './Pages/About';
 import Abo from './Pages/Abo';
 import Generate from './Pages/Generate';
+import Register from './Pages/Register';
 
 function App() {
   
@@ -18,6 +19,7 @@ function App() {
         <Route path="/About" element={<About />} />
         <Route path="/Abo" element={<Abo />} />
         <Route path='/Generate' element={<Generate />} />
+        <Route path='/Register' element={<Register />} />
       </Routes>
     </Router>
   )

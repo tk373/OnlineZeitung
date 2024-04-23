@@ -38,11 +38,10 @@ const handleSubmit = async (event) => {
       return;
     }
 
-    // Generate a signed URL for the uploaded image
     const { data: signedUrlData, error: signedUrlError } = await supabase
       .storage
       .from('Images')
-      .createSignedUrl(fileName, 60 * 60 * 24); // URL expires in 24 hours
+      .createSignedUrl(fileName, 60 * 60 * 60); // URL expires in 24 hours
 
     if (signedUrlError) {
       console.error('Error generating signed URL:', signedUrlError);
