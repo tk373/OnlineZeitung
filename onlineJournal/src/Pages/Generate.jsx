@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import './Generate.css';
+import configData from '../../config.json';
 import Header from '../components/Header.jsx';
 import Footer from '../components/Footer.jsx';
 import { Card, CardHeader, CardBody, Tabs, Tab, Accordion, AccordionItem, Input, Button, Textarea } from "@nextui-org/react";
@@ -24,19 +25,21 @@ function Generate() {
 
     const generateArticle = async () => {
         const apiURL = 'https://api.openai.com/v1/chat/completions';
+        const apiKey = configData.API_KEY;
         const config = {
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': "Bearer dachuntdeschlüssel "
+                'Authorization': `Bearer ${apiKey}`
             }
         };
-    
+
+
         // Berechnung der Token-Anzahl basierend auf der gewünschten Wortanzahl
         // 400 Wörter * 4 Bytes (Token) pro Wort als grobe Schätzung
-        const max_tokens = 400 * 4; 
-    
+        const max_tokens = 400 * 4;
+
         const sourceTexts = Object.values(sourceURLs).map(url => `Quelle: ${url}`).join(' ');
-    
+
         const data = {
             model: "gpt-4-0125-preview",
             messages: [
@@ -48,10 +51,10 @@ function Generate() {
             temperature: 0.7,
             max_tokens: max_tokens
         };
-    
+
         try {
             const response = await axios.post(apiURL, data, config);
-            if(response.data && response.data.choices && response.data.choices.length > 0) {
+            if (response.data && response.data.choices && response.data.choices.length > 0) {
                 setGeneratedArticle(response.data.choices[0].message.content);
             } else {
                 setGeneratedArticle('Keine Antwort erhalten. Bitte überprüfen Sie den Prompt und versuchen Sie es erneut.');
@@ -61,7 +64,7 @@ function Generate() {
             setGeneratedArticle('Es gab einen Fehler bei der Generierung des Artikels. Bitte versuche es später erneut.');
         }
     };
-    
+
 
 
     return (
@@ -115,7 +118,7 @@ function Generate() {
                                         variant="bordered"
                                         labelPlacement="outside"
                                         value={generatedArticle}
-                                        
+
                                     />
                                 </CardBody>
                             </Card>
