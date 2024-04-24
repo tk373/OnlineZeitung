@@ -62,7 +62,7 @@ function Generate() {
         const max_tokens = 400 * 4;
 
         const data = {
-            model: "gpt-4-0125-preview",
+            model: "gpt-3.5-turbo-0125",
             messages: [
                 {
                     role: "user",
