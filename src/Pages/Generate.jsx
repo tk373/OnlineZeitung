@@ -59,6 +59,7 @@ function Generate() {
 
         const apiURL = 'https://api.openai.com/v1/chat/completions';
         const apiKey = process.env.API_KEY;
+        console.log(apiKey)
         const max_tokens = 400 * 4;
 
         const data = {
