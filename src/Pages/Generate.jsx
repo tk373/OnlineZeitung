@@ -58,7 +58,7 @@ function Generate() {
         const sourceTexts = contents.map((content, index) => `Quelle ${index + 1}: ${content}`).join('\n\n');
 
         const apiURL = 'https://api.openai.com/v1/chat/completions';
-        const apiKey = configData.API_KEY;
+        const apiKey = process.env.API_KEY;
         const max_tokens = 400 * 4;
 
         const data = {
