@@ -19,6 +19,19 @@ function Generate() {
         setSourceURLs(prevURLs => ({ ...prevURLs, [key]: value }));
     };
 
+    const fetchContent = async (sourceUrl) => {
+        const scraperApiUrl = `https://dposchtbackend.azurewebsites.net/fetch-content?url=${encodeURIComponent(sourceUrl)}`;
+        try {
+            const response = await fetch(scraperApiUrl);
+            const data = await response.json();
+            console.log('Fetched content for URL:', sourceUrl, data);
+            return data.content; // Assuming the JSON has a content field with the text
+        } catch (error) {
+            console.error('Error fetching content:', error);
+            return ''; // Return an empty string in case of an error
+        }
+    };
+
     const fetchContentFromScraper = async (sourceUrl) => {
         // Replace 'yourAzureServiceBaseUrl' with the actual base URL of your Azure service
         const scraperApiUrl = `https://dposchtbackend.azurewebsites.net/fetch-content?url=${encodeURIComponent(sourceUrl)}`;
@@ -34,28 +47,26 @@ function Generate() {
         }
     };
 
-    const handleFetchContent = () => {
-        // Call the fetchContentFromScraper function with the URL
-        // Assuming sourceURLs[1] has the URL you want to scrape
-        if (sourceURLs[1]) {
-            fetchContentFromScraper(sourceURLs[1]);
-        }
-    };
+    
 
     const generateArticle = async () => {
+        // Fetch content from all source URLs
+        const contentPromises = Object.values(sourceURLs).map(url => url ? fetchContent(url) : '');
+        const contents = await Promise.all(contentPromises); // Wait for all content fetches to complete
+
+        // Prepare the text to be sent to the OpenAI API
+        const sourceTexts = contents.map((content, index) => `Quelle ${index + 1}: ${content}`).join('\n\n');
+
         const apiURL = 'https://api.openai.com/v1/chat/completions';
         const apiKey = configData.API_KEY;
-
         const max_tokens = 400 * 4;
 
-        const sourceTexts = Object.values(sourceURLs).map(url => `Quelle: ${url}`).join(' ');
-
         const data = {
-            model: "gpt-4-0125-preview",
+            model: "gpt-3.5-turbo-0125",
             messages: [
                 {
                     role: "user",
-                    content: `Generiere mir einen Artikel über ${articlePrompt}. Beutze unter anderem die Quellen ${sourceTexts}`
+                    content: `Generiere mir einen Artikel über ${articlePrompt}. Verwende unter anderem die folgenden Inhalte als Quellen:\n\n${sourceTexts}`
                 }
             ],
             temperature: 0.7,
@@ -109,7 +120,7 @@ function Generate() {
                                             <AccordionItem key={key} aria-label={`Quelle ${key}`} title={`Quelle ${key}`}>
                                                 <Input type="url" value={sourceURLs[key]} onChange={(e) => handleSourceChange(key, e.target.value)} startContent={
                                                     <div className="pointer-events-none flex items-center">
-                                                        <span className="text-default-400 text-small">https://</span>
+                                                        <span className="text-default-400 text-small"></span>
                                                     </div>
                                                 } />
                                             </AccordionItem>
@@ -119,7 +130,6 @@ function Generate() {
                                         <Button onClick={generateArticle} radius="full" className="bg-gradient-to-tr from-[#00737A] to-blue-300 text-white shadow-lg">
                                             Generate
                                         </Button>
-                                        <Button onClick={handleFetchContent}>Fetch Content for Logging</Button>
                                     </div>
                                 </CardBody>
                             </Card>
