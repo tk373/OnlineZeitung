@@ -5,12 +5,13 @@ import configData from '../../config.json';
 import Header from '../components/Header.jsx';
 import Footer from '../components/Footer.jsx';
 import { Card, CardHeader, CardBody, Tabs, Tab, Accordion, AccordionItem, Input, Button, Textarea } from "@nextui-org/react";
-require('dotenv').config();
+import dotenv from 'dotenv';
 
 function Generate() {
     const [articlePrompt, setArticlePrompt] = useState('');
     const [sourceURLs, setSourceURLs] = useState({ 1: '', 2: '', 3: '' });
     const [generatedArticle, setGeneratedArticle] = useState('Hier wird dein generierter Artikel angezeigt.');
+    dotenv.config();
     const apiKey = process.env.API_KEY;
     const headers = {
 
