@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import './Generate.css';
 import configData from '../../config.json';
 import Header from '../components/Header.jsx';
@@ -9,7 +10,9 @@ function Generate() {
     const [articlePrompt, setArticlePrompt] = useState('');
     const [sourceURLs, setSourceURLs] = useState({ 1: '', 2: '', 3: '' });
     const [generatedArticle, setGeneratedArticle] = useState('Hier wird dein generierter Artikel angezeigt.');
-    const [scraperResponse, setScraperResponse] = useState(null);
+    const headers = {
+
+    }
 
     const handleArticlePromptChange = (event) => {
         setArticlePrompt(event.target.value);
@@ -19,55 +22,30 @@ function Generate() {
         setSourceURLs(prevURLs => ({ ...prevURLs, [key]: value }));
     };
 
-    const fetchContent = async (sourceUrl) => {
-        const scraperApiUrl = `https://dposchtbackend.azurewebsites.net/fetch-content?url=${encodeURIComponent(sourceUrl)}`;
-        try {
-            const response = await fetch(scraperApiUrl);
-            const data = await response.json();
-            console.log('Fetched content for URL:', sourceUrl, data);
-            return data.content; // Assuming the JSON has a content field with the text
-        } catch (error) {
-            console.error('Error fetching content:', error);
-            return ''; // Return an empty string in case of an error
-        }
-    };
-
-    const fetchContentFromScraper = async (sourceUrl) => {
-        // Replace 'yourAzureServiceBaseUrl' with the actual base URL of your Azure service
-        const scraperApiUrl = `https://dposchtbackend.azurewebsites.net/fetch-content?url=${encodeURIComponent(sourceUrl)}`;
-
-        try {
-            const response = await fetch(scraperApiUrl);
-            const data = await response.json();
-            setScraperResponse(data); // Store the response data in state (if needed)
-            console.log('Scraper response:', data); // Log the data to the console
-        } catch (error) {
-            console.error('Error fetching content:', error);
-            // You can set the error in the state as well if needed, or handle it accordingly
-        }
-    };
-
-    
-
     const generateArticle = async () => {
-        // Fetch content from all source URLs
-        const contentPromises = Object.values(sourceURLs).map(url => url ? fetchContent(url) : '');
-        const contents = await Promise.all(contentPromises); // Wait for all content fetches to complete
-
-        // Prepare the text to be sent to the OpenAI API
-        const sourceTexts = contents.map((content, index) => `Quelle ${index + 1}: ${content}`).join('\n\n');
-
         const apiURL = 'https://api.openai.com/v1/chat/completions';
-        const apiKey = process.env.API_KEY;
-        console.log(apiKey)
+       const apiKey = configData.API_KEY;
+       console.log('My API Key:', apiKey);
+        const config = {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${apiKey}`
+            }
+        };
+
+
+        // Berechnung der Token-Anzahl basierend auf der gewünschten Wortanzahl
+        // 400 Wörter * 4 Bytes (Token) pro Wort als grobe Schätzung
         const max_tokens = 400 * 4;
 
+        const sourceTexts = Object.values(sourceURLs).map(url => `Quelle: ${url}`).join(' ');
+
         const data = {
-            model: "gpt-3.5-turbo-0125",
+            model: "gpt-4-0125-preview",
             messages: [
                 {
                     role: "user",
-                    content: `Generiere mir einen Artikel über ${articlePrompt}. Verwende unter anderem die folgenden Inhalte als Quellen:\n\n${sourceTexts}`
+                    content: `Generiere mir einen Artikel über ${articlePrompt}. Beutze unter anderem die Quellen ${sourceTexts}` // Integration des Prompts und der Quellen
                 }
             ],
             temperature: 0.7,
@@ -75,17 +53,9 @@ function Generate() {
         };
 
         try {
-            const response = await fetch(apiURL, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${apiKey}`
-                },
-                body: JSON.stringify(data)
-            });
-            const result = await response.json();
-            if (result && result.choices && result.choices.length > 0) {
-                setGeneratedArticle(result.choices[0].message.content);
+            const response = await axios.post(apiURL, data, config);
+            if (response.data && response.data.choices && response.data.choices.length > 0) {
+                setGeneratedArticle(response.data.choices[0].message.content);
             } else {
                 setGeneratedArticle('Keine Antwort erhalten. Bitte überprüfen Sie den Prompt und versuchen Sie es erneut.');
             }
@@ -94,6 +64,8 @@ function Generate() {
             setGeneratedArticle('Es gab einen Fehler bei der Generierung des Artikels. Bitte versuche es später erneut.');
         }
     };
+
+
 
     return (
         <div className="App">
@@ -121,7 +93,7 @@ function Generate() {
                                             <AccordionItem key={key} aria-label={`Quelle ${key}`} title={`Quelle ${key}`}>
                                                 <Input type="url" value={sourceURLs[key]} onChange={(e) => handleSourceChange(key, e.target.value)} startContent={
                                                     <div className="pointer-events-none flex items-center">
-                                                        <span className="text-default-400 text-small"></span>
+                                                        <span className="text-default-400 text-small">https://</span>
                                                     </div>
                                                 } />
                                             </AccordionItem>

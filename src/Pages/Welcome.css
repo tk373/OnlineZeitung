@@ -26,25 +26,27 @@
   }
 
   .bodyContainer{
+    display: flex;
+    justify-content: center;
     background-color: var(--background);
   }
   
   
   .articlesContainer {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(20vw, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(18vw, 1fr));
     gap: 20px;
     padding: 20px;
     width: 100%;
-    max-width: 1200px; /* This may remain the same or be adjusted based on the overall layout */
-    margin: auto;
-    margin: 40px 40px; /* Keep or adjust the top margin for spacing from the content above */
+    max-width: 1500px;
+    margin: 40px 40px; 
   }
   
   @media (max-width: 768px) {
+    
     .articlesContainer {
-      /* You may want to adjust this for smaller screens to ensure the cards don't look too big on mobile */
       grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+
     }
   }
   

@@ -7,21 +7,23 @@ import About from './Pages/About';
 import Abo from './Pages/Abo';
 import Generate from './Pages/Generate';
 import Register from './Pages/Register';
+import Login from './Pages/Login';
+import AuthGuard from './auth/AuthGuard';
 
 function App() {
   
 
   return (
-    <Router>
       <Routes>
-        <Route path="/" element={<Welcome />} />
-        <Route path="/Add" element={<AddArticle />} />
-        <Route path="/About" element={<About />} />
-        <Route path="/Abo" element={<Abo />} />
-        <Route path='/Generate' element={<Generate />} />
-        <Route path='/Register' element={<Register />} />
+        <Route path="/" element={<AuthGuard><Welcome /></AuthGuard>} />
+        <Route path="/Add" element={<AuthGuard><AddArticle /></AuthGuard>} />
+        <Route path="/About" element={<AuthGuard><About /></AuthGuard>} />
+        <Route path="/Abo" element={<AuthGuard><Abo /></AuthGuard>} />
+        <Route path='/Generate' element={<AuthGuard><Generate /></AuthGuard>} />
+        <Route path='/Register' element={<AuthGuard><Register /></AuthGuard>} />
+        <Route path='/Login' element={<Login />} />
+
       </Routes>
-    </Router>
   )
 }
 
