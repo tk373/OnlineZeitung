@@ -4,6 +4,7 @@ import Header from '../components/Header.jsx'
 import Footer from '../components/Footer.jsx'
 import supabase from '../supabaseClient.js'
 import { Card, CardHeader, CardBody, CardFooter, Divider, Link, Image } from "@nextui-org/react";
+import ComponentGuard from '../auth/ComponentGuard';
 
 function Welcome() {
 
@@ -52,6 +53,7 @@ function Welcome() {
         </Card>
       </div>
       <div className="bodyContainer">
+      <ComponentGuard>
       <div className="articlesContainer">
         {articles.map((article) => {
           const [date, time] = article.created_at.split('T');
@@ -81,6 +83,7 @@ function Welcome() {
           );
         })}
       </div>
+      </ComponentGuard>
       </div>
       <Footer />
     </div>
