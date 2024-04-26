@@ -35,13 +35,13 @@ function Generate() {
         // Fetch content from all source URLs
         const contentPromises = Object.values(sourceURLs).filter(url => url).map(fetchContent);
         const contents = await Promise.all(contentPromises);
-
+    
         // Prepare the request body to be sent to your backend
         const requestBody = {
             articlePrompt: articlePrompt,
             sourceTexts: contents.join('\n\n') // Combine the text from all sources
         };
-
+    
         try {
             // Make the POST request to your backend to generate the article
             const response = await fetch('https://dposchtbackend.azurewebsites.net/generate-article', {
@@ -52,8 +52,9 @@ function Generate() {
                 body: JSON.stringify(requestBody)
             });
             const result = await response.json();
-            if (result.article) {
-                setGeneratedArticle(result.article);
+            // Ensure you access the content field of the first message in the choices array
+            if (result.article && result.article.choices && result.article.choices.length > 0) {
+                setGeneratedArticle(result.article.choices[0].message.content);
             } else {
                 setGeneratedArticle('Keine Antwort erhalten. Bitte überprüfen Sie den Prompt und versuchen Sie es erneut.');
             }
@@ -64,6 +65,7 @@ function Generate() {
             setIsGenerating(false);
         }
     };
+    
 
     return (
         <div className="App">
