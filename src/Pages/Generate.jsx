@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import './Generate.css';
 import configData from '../../config.json';
 import { useEffect } from 'react';
@@ -49,32 +50,45 @@ function Generate() {
         }
     };
 
-
+    
 
     const generateArticle = async () => {
-        setIsGenerating(true);
         // Fetch content from all source URLs
-        const contentPromises = Object.values(sourceURLs).filter(url => url).map(fetchContent);
-        const contents = await Promise.all(contentPromises);
+        const contentPromises = Object.values(sourceURLs).map(url => url ? fetchContent(url) : '');
+        const contents = await Promise.all(contentPromises); // Wait for all content fetches to complete
 
-        // Prepare the request body to be sent to your backend
-        const requestBody = {
-            articlePrompt: articlePrompt,
-            sourceTexts: contents.join('\n\n') // Combine the text from all sources
+        // Prepare the text to be sent to the OpenAI API
+        const sourceTexts = contents.map((content, index) => `Quelle ${index + 1}: ${content}`).join('\n\n');
+
+        const apiURL = 'https://api.openai.com/v1/chat/completions';
+        const apiKey = process.env.API_KEY;
+        console.log(apiKey)
+        const max_tokens = 400 * 4;
+
+        const data = {
+            model: "gpt-3.5-turbo-0125",
+            messages: [
+                {
+                    role: "user",
+                    content: `Generiere mir einen Artikel über ${articlePrompt}. Verwende unter anderem die folgenden Inhalte als Quellen:\n\n${sourceTexts}`
+                }
+            ],
+            temperature: 0.7,
+            max_tokens: max_tokens
         };
 
         try {
-            // Make the POST request to your backend to generate the article
-            const response = await fetch('https://dposchtbackend.azurewebsites.net/generate-article', {
+            const response = await fetch(apiURL, {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${apiKey}`
                 },
-                body: JSON.stringify(requestBody)
+                body: JSON.stringify(data)
             });
             const result = await response.json();
-            if (result.article) {
-                setGeneratedArticle(result.article);
+            if (result && result.choices && result.choices.length > 0) {
+                setGeneratedArticle(result.choices[0].message.content);
             } else {
                 setGeneratedArticle('Keine Antwort erhalten. Bitte überprüfen Sie den Prompt und versuchen Sie es erneut.');
             }
@@ -85,11 +99,6 @@ function Generate() {
             setIsGenerating(false);
         }
     };
-
-    useEffect(() => {
-        generateArticle();
-    }, []); // Pass an empty dependency array to run the effect only once after initial render
-
 
     return (
         <div className="App">
@@ -117,7 +126,7 @@ function Generate() {
                                             <AccordionItem key={key} aria-label={`Quelle ${key}`} title={`Quelle ${key}`}>
                                                 <Input type="url" value={sourceURLs[key]} onChange={(e) => handleSourceChange(key, e.target.value)} startContent={
                                                     <div className="pointer-events-none flex items-center">
-                                                        <span className="text-default-400 text-small"></span>
+                                                        <span className="text-default-400 text-small">https://</span>
                                                     </div>
                                                 } />
                                             </AccordionItem>

@@ -6,12 +6,14 @@ import Header from '../components/Header.jsx'
 import Footer from '../components/Footer.jsx'
 import {EyeFilledIcon} from "../assets/EyeFilledIcon";
 import {EyeSlashFilledIcon} from "../assets/EyeSlashFilledIcon";
+import { useNavigate } from 'react-router-dom';
 
 function Register() {
   const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isVisible, setIsVisible] = React.useState(false);
+  const navigate = useNavigate();
 
   const toggleVisibility = () => setIsVisible(!isVisible);
 
@@ -22,13 +24,13 @@ function Register() {
         email: email,
         password: password,
       });
-
       if (error) throw error;
-      alert('Registration successful! Check your email for the confirmation link.');
+      alert(`Registration successful! Check your email for the confirmation link.`);
     } catch (error) {
       alert(`Error: ${error.message}`);
     } finally {
       setLoading(false);
+      navigate('/');
     }
   };
 
@@ -65,18 +67,8 @@ function Register() {
       type={isVisible ? "text" : "password"}
       className="max-w-xs"
       value={password}
-    onChange={(e) => setPassword(e.target.value)}
-    />
-      {/* <Input.Password
-        clearable
-        bordered
-        fullWidth
-        color="primary"
-        size="lg"
-        placeholder="Password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-      /> */}
+      onChange={(e) => setPassword(e.target.value)}
+      />
       <Spacer y={1} />
       <Button
         disabled={loading}
