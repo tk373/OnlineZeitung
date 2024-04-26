@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './Generate.css';
 import configData from '../../config.json';
+import { useEffect } from 'react';
 import Header from '../components/Header.jsx';
 import Footer from '../components/Footer.jsx';
 import { Card, CardHeader, CardBody, Tabs, Tab, Accordion, AccordionItem, Input, Button, Textarea } from "@nextui-org/react";
@@ -10,6 +11,7 @@ function Generate() {
     const [sourceURLs, setSourceURLs] = useState({ 1: '', 2: '', 3: '' });
     const [generatedArticle, setGeneratedArticle] = useState('Hier wird dein generierter Artikel angezeigt.');
     const [scraperResponse, setScraperResponse] = useState(null);
+    const [isGenerating, setIsGenerating] = useState(false);
 
     const handleArticlePromptChange = (event) => {
         setArticlePrompt(event.target.value);
@@ -47,53 +49,47 @@ function Generate() {
         }
     };
 
-    
+
 
     const generateArticle = async () => {
+        setIsGenerating(true);
         // Fetch content from all source URLs
-        const contentPromises = Object.values(sourceURLs).map(url => url ? fetchContent(url) : '');
-        const contents = await Promise.all(contentPromises); // Wait for all content fetches to complete
+        const contentPromises = Object.values(sourceURLs).filter(url => url).map(fetchContent);
+        const contents = await Promise.all(contentPromises);
 
-        // Prepare the text to be sent to the OpenAI API
-        const sourceTexts = contents.map((content, index) => `Quelle ${index + 1}: ${content}`).join('\n\n');
-
-        const apiURL = 'https://api.openai.com/v1/chat/completions';
-        const apiKey = process.env.API_KEY;
-        console.log(apiKey)
-        const max_tokens = 400 * 4;
-
-        const data = {
-            model: "gpt-3.5-turbo-0125",
-            messages: [
-                {
-                    role: "user",
-                    content: `Generiere mir einen Artikel über ${articlePrompt}. Verwende unter anderem die folgenden Inhalte als Quellen:\n\n${sourceTexts}`
-                }
-            ],
-            temperature: 0.7,
-            max_tokens: max_tokens
+        // Prepare the request body to be sent to your backend
+        const requestBody = {
+            articlePrompt: articlePrompt,
+            sourceTexts: contents.join('\n\n') // Combine the text from all sources
         };
 
         try {
-            const response = await fetch(apiURL, {
+            // Make the POST request to your backend to generate the article
+            const response = await fetch('https://dposchtbackend.azurewebsites.net/generate-article', {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${apiKey}`
+                    'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(data)
+                body: JSON.stringify(requestBody)
             });
             const result = await response.json();
-            if (result && result.choices && result.choices.length > 0) {
-                setGeneratedArticle(result.choices[0].message.content);
+            if (result.article) {
+                setGeneratedArticle(result.article);
             } else {
                 setGeneratedArticle('Keine Antwort erhalten. Bitte überprüfen Sie den Prompt und versuchen Sie es erneut.');
             }
         } catch (error) {
-            console.error('Fehler bei der Generierung des Artikels:', error);
-            setGeneratedArticle('Es gab einen Fehler bei der Generierung des Artikels. Bitte versuche es später erneut.');
+            console.error('Fehler bei der Anfrage an das Backend:', error);
+            setGeneratedArticle('Es gab einen Fehler bei der Anfrage an das Backend. Bitte versuche es später erneut.');
+        } finally {
+            setIsGenerating(false);
         }
     };
+
+    useEffect(() => {
+        generateArticle();
+    }, []); // Pass an empty dependency array to run the effect only once after initial render
+
 
     return (
         <div className="App">
@@ -128,8 +124,8 @@ function Generate() {
                                         ))}
                                     </Accordion>
                                     <div className="buttonContainer">
-                                        <Button onClick={generateArticle} radius="full" className="bg-gradient-to-tr from-[#00737A] to-blue-300 text-white shadow-lg">
-                                            Generate
+                                        <Button onClick={generateArticle} disabled={isGenerating} radius="full" className="bg-gradient-to-tr from-[#00737A] to-blue-300 text-white shadow-lg">
+                                            {isGenerating ? 'Generating...' : 'Generate'}
                                         </Button>
                                     </div>
                                 </CardBody>
