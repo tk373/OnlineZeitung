@@ -1,8 +1,5 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 import './Generate.css';
-import configData from '../../config.json';
-import { useEffect } from 'react';
 import Header from '../components/Header.jsx';
 import Footer from '../components/Footer.jsx';
 import { Card, CardHeader, CardBody, Tabs, Tab, Accordion, AccordionItem, Input, Button, Textarea } from "@nextui-org/react";
@@ -11,7 +8,6 @@ function Generate() {
     const [articlePrompt, setArticlePrompt] = useState('');
     const [sourceURLs, setSourceURLs] = useState({ 1: '', 2: '', 3: '' });
     const [generatedArticle, setGeneratedArticle] = useState('Hier wird dein generierter Artikel angezeigt.');
-    const [scraperResponse, setScraperResponse] = useState(null);
     const [isGenerating, setIsGenerating] = useState(false);
 
     const handleArticlePromptChange = (event) => {
@@ -27,7 +23,6 @@ function Generate() {
         try {
             const response = await fetch(scraperApiUrl);
             const data = await response.json();
-            console.log('Fetched content for URL:', sourceUrl, data);
             return data.content; // Assuming the JSON has a content field with the text
         } catch (error) {
             console.error('Error fetching content:', error);
@@ -35,60 +30,30 @@ function Generate() {
         }
     };
 
-    const fetchContentFromScraper = async (sourceUrl) => {
-        // Replace 'yourAzureServiceBaseUrl' with the actual base URL of your Azure service
-        const scraperApiUrl = `https://dposchtbackend.azurewebsites.net/fetch-content?url=${encodeURIComponent(sourceUrl)}`;
-
-        try {
-            const response = await fetch(scraperApiUrl);
-            const data = await response.json();
-            setScraperResponse(data); // Store the response data in state (if needed)
-            console.log('Scraper response:', data); // Log the data to the console
-        } catch (error) {
-            console.error('Error fetching content:', error);
-            // You can set the error in the state as well if needed, or handle it accordingly
-        }
-    };
-
-    
-
     const generateArticle = async () => {
+        setIsGenerating(true);
         // Fetch content from all source URLs
-        const contentPromises = Object.values(sourceURLs).map(url => url ? fetchContent(url) : '');
-        const contents = await Promise.all(contentPromises); // Wait for all content fetches to complete
+        const contentPromises = Object.values(sourceURLs).filter(url => url).map(fetchContent);
+        const contents = await Promise.all(contentPromises);
 
-        // Prepare the text to be sent to the OpenAI API
-        const sourceTexts = contents.map((content, index) => `Quelle ${index + 1}: ${content}`).join('\n\n');
-
-        const apiURL = 'https://api.openai.com/v1/chat/completions';
-        const apiKey = process.env.API_KEY;
-        console.log(apiKey)
-        const max_tokens = 400 * 4;
-
-        const data = {
-            model: "gpt-3.5-turbo-0125",
-            messages: [
-                {
-                    role: "user",
-                    content: `Generiere mir einen Artikel über ${articlePrompt}. Verwende unter anderem die folgenden Inhalte als Quellen:\n\n${sourceTexts}`
-                }
-            ],
-            temperature: 0.7,
-            max_tokens: max_tokens
+        // Prepare the request body to be sent to your backend
+        const requestBody = {
+            articlePrompt: articlePrompt,
+            sourceTexts: contents.join('\n\n') // Combine the text from all sources
         };
 
         try {
-            const response = await fetch(apiURL, {
+            // Make the POST request to your backend to generate the article
+            const response = await fetch('https://dposchtbackend.azurewebsites.net/generate-article', {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${apiKey}`
+                    'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(data)
+                body: JSON.stringify(requestBody)
             });
             const result = await response.json();
-            if (result && result.choices && result.choices.length > 0) {
-                setGeneratedArticle(result.choices[0].message.content);
+            if (result.article) {
+                setGeneratedArticle(result.article);
             } else {
                 setGeneratedArticle('Keine Antwort erhalten. Bitte überprüfen Sie den Prompt und versuchen Sie es erneut.');
             }
@@ -117,24 +82,20 @@ function Generate() {
                         <Tab key="input" title="Input">
                             <Card className="textSegment">
                                 <CardHeader>
-                                    <h2>Promt und Quellen</h2>
+                                    <h2>Prompt und Quellen</h2>
                                 </CardHeader>
                                 <CardBody>
                                     <Input label="Generiere einen Artikel über" value={articlePrompt} onChange={handleArticlePromptChange} />
                                     <Accordion variant="bordered" className='mt-10'>
                                         {Object.keys(sourceURLs).map((key) => (
-                                            <AccordionItem key={key} aria-label={`Quelle ${key}`} title={`Quelle ${key}`}>
-                                                <Input type="url" value={sourceURLs[key]} onChange={(e) => handleSourceChange(key, e.target.value)} startContent={
-                                                    <div className="pointer-events-none flex items-center">
-                                                        <span className="text-default-400 text-small">https://</span>
-                                                    </div>
-                                                } />
+                                            <AccordionItem key={key} title={`Quelle ${key}`}>
+                                                <Input type="url" value={sourceURLs[key]} onChange={(e) => handleSourceChange(key, e.target.value)} />
                                             </AccordionItem>
                                         ))}
                                     </Accordion>
                                     <div className="buttonContainer">
                                         <Button onClick={generateArticle} disabled={isGenerating} radius="full" className="bg-gradient-to-tr from-[#00737A] to-blue-300 text-white shadow-lg">
-                                            {isGenerating ? 'Generating...' : 'Generate'}
+                                            {isGenerating ? 'Generiere...' : 'Generiere Artikel'}
                                         </Button>
                                     </div>
                                 </CardBody>
@@ -151,7 +112,6 @@ function Generate() {
                                         variant="bordered"
                                         labelPlacement="outside"
                                         value={generatedArticle}
-
                                     />
                                 </CardBody>
                             </Card>
