@@ -2,7 +2,8 @@ import { useState, useEffect } from 'react'
 import './Welcome.css'
 import Header from '../components/Header.jsx'
 import Footer from '../components/Footer.jsx'
-import supabase from '../supabaseClient.js'
+import { db } from '../firebaseClient'; // Import Firestore database
+import { collection, getDocs, query, orderBy } from 'firebase/firestore';
 import { Card, CardHeader, CardBody, CardFooter, Divider, Link, Image } from "@nextui-org/react";
 import ComponentGuard from '../auth/ComponentGuard';
 
@@ -12,16 +13,17 @@ function Welcome() {
 
   // Funktion zum Abrufen der Artikel aus Supabase
   const fetchArticles = async () => {
-    const { data, error } = await supabase
-      .from('articles')
-      .select('*');
-
-    if (error) {
-      console.error('Fehler beim Abrufen der Artikel:', error);
-      return;
+    try {
+      const q = query(collection(db, 'articles'), orderBy('created_at', 'desc'));
+      const querySnapshot = await getDocs(q);
+      const fetchedArticles = [];
+      querySnapshot.forEach((doc) => {
+        fetchedArticles.push({ id: doc.id, ...doc.data() });
+      });
+      setArticles(fetchedArticles);
+    } catch (error) {
+      console.error('Error fetching articles:', error);
     }
-
-    setArticles(data);
   };
 
   useEffect(() => {
@@ -55,13 +57,12 @@ function Welcome() {
       <div className="bodyContainer">
       <ComponentGuard>
       <div className="articlesContainer">
-        {articles.map((article) => {
-          const [date, time] = article.created_at.split('T');
-          const formattedTime = time.split('.')[0]; 
+      {articles.map((article) => {
+          const [date, time] = article.created_at?.split('T') || ['', '']; // Handle missing 'created_at'
+          const formattedTime = time.split('.')[0];
           return (
             <Card key={article.id} hoverable clickable>
               <CardHeader className="flex items-center justify-between">
-                {/* Image in the header. Adjust src to your image URL field */}
                 {article.image_url && (
                   <Image
                     src={article.image_url}
