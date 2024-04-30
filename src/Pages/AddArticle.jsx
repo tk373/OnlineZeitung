@@ -2,7 +2,9 @@ import { useState } from 'react'
 import './AddArticle.css'
 import Header from '../components/Header.jsx'
 import Footer from '../components/Footer.jsx'
-import supabase from '../supabaseClient';
+import { app, db } from '../firebaseClient'; // Updated import to match named exports
+import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+import { collection, addDoc } from 'firebase/firestore';
 import {Button} from "@nextui-org/button";
 import {Textarea, Input, Spacer} from "@nextui-org/react";
 
@@ -27,54 +29,43 @@ function AddArticle() {
     setInputKey(Date.now()); 
 };
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
+const handleSubmit = async (event) => {
+  event.preventDefault();
 
-    let imageUrl = null;
-    if (image) {
-      const fileExt = image.name.split('.').pop();
-      const fileName = `${Math.random()}.${fileExt}`; // Generates a unique file name
-      const { data: uploadData, error: uploadError } = await supabase
-        .storage
-        .from('Images')
-        .upload(fileName, image);
+  let imageUrl = null;
+  if (image) {
+    const storage = getStorage(app);
+    const fileExt = image.name.split('.').pop();
+    const fileName = `${Math.random()}.${fileExt}`;
+    const imageRef = ref(storage, `images/${fileName}`);
 
-      if (uploadError) {
-        console.error('Error uploading image:', uploadError);
-        return;
-      }
-
-      // Generate a signed URL for the uploaded image
-      const { data: signedUrlData, error: signedUrlError } = await supabase
-        .storage
-        .from('Images')
-        .createSignedUrl(fileName, 60 * 60 * 60); // URL expires in 24 hours
-
-      if (signedUrlError) {
-        console.error('Error generating signed URL:', signedUrlError);
-        return;
-      }
-
-      imageUrl = signedUrlData.signedUrl;
+    try {
+      await uploadBytes(imageRef, image);
+      imageUrl = await getDownloadURL(imageRef);
+    } catch (error) {
+      console.error('Error uploading image:', error);
+      return;
     }
+  }
 
-    // Insert article data including the signed URL
-    const { data, error } = await supabase
-      .from('articles')
-      .insert([
-        { title, lead, body, image_url: imageUrl },
-      ]);
+  // Firestore to insert article data
+  try {
+    await addDoc(collection(db, 'articles'), {
+      title,
+      lead,
+      body,
+      image_url: imageUrl,
+    });
 
-    if (error) {
-      console.error('Error saving the article:', error);
-    } else {
-      // Reset form state
-      setTitle('');
-      setLead('');
-      setBody('');
-      setImage(null);
-      setInputKey(Date.now());
-    }
+    // Reset form state
+    setTitle('');
+    setLead('');
+    setBody('');
+    setImage(null);
+    setInputKey(Date.now());
+  } catch (error) {
+    console.error('Error saving the article:', error);
+  }
 };
 
   return (

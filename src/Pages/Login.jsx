@@ -7,6 +7,9 @@ import Footer from '../components/Footer.jsx'
 import {EyeFilledIcon} from "../assets/EyeFilledIcon";
 import {EyeSlashFilledIcon} from "../assets/EyeSlashFilledIcon";
 import { useNavigate } from 'react-router-dom';
+import { Auth } from '@supabase/auth-ui-react';
+import { ThemeSupa } from '@supabase/auth-ui-shared';
+import { Card, CardHeader, CardBody, CardFooter, Divider, Link, Image } from "@nextui-org/react";
 
 function Login() {
   const [loading, setLoading] = useState(false);
@@ -25,7 +28,7 @@ function Login() {
         password: password,
       });
       if (error) throw error;
-      alert(`Registration successful! Check your email for the confirmation link. ${error.message}`);
+      alert(`Registration successful! Check your email for the confirmation link.`);
     } catch (error) {
       alert(`Error: ${error.message}`);
     } finally {
@@ -38,7 +41,8 @@ function Login() {
     <header>
       <Header></Header>
     </header>
-    <div style={{ maxWidth: '300px', margin: 'auto' }}>
+    <div style={{ maxWidth: '800px', margin: 'auto' }}>
+      <Card className="textSegment">
         <Input
       isClearable
       type="email"
@@ -47,9 +51,8 @@ function Login() {
       placeholder="Enter your email"
       value={email}
       onChange={(e) => setEmail(e.target.value)}
-      className="max-w-xs"
         />
-      <Spacer y={1} />
+      <Spacer y={3} />
       <Input
       label="Password"
       variant="bordered"
@@ -64,11 +67,10 @@ function Login() {
         </button>
       }
       type={isVisible ? "text" : "password"}
-      className="max-w-xs"
       value={password}
       onChange={(e) => setPassword(e.target.value)}
       />
-      <Spacer y={1} />
+      <Spacer y={3} />
       <Button
         disabled={loading}
         onClick={handleRegister}
@@ -77,6 +79,7 @@ function Login() {
       >
         {loading ? 'Loading...' : 'Login'}
       </Button>
+      </Card>
     </div>
         <Footer/>
     </div>
