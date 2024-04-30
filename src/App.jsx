@@ -17,8 +17,8 @@ function App() {
       <Routes>
         <Route path="/" element={<Welcome />} />
         <Route path="/Add" element={<AuthGuard><AddArticle /></AuthGuard>} />
-        <Route path="/About" element={<AuthGuard><About /></AuthGuard>} />
-        <Route path="/Abo" element={<AuthGuard><Abo /></AuthGuard>} />
+        <Route path="/About" element={<About />} />
+        <Route path="/Abo" element={<Abo />} />
         <Route path='/Generate' element={<AuthGuard><Generate /></AuthGuard>} />
         <Route path='/Register' element={<Register />} />
         <Route path='/Login' element={<Login />} />
