@@ -1,7 +1,6 @@
 
 .header {
   background: var(--background); /* Solid primary color for header background */
-  color: var(--background); /* Light color for text in the header for contrast */
   width: 100%;
   display: flex;
   padding: 0;
@@ -11,15 +10,23 @@
 
 .Logo {
   color: var(--background); /* Ensures logo stands out against the primary color */
-  margin-top: 20px;
+  margin-top: 0px;
   margin-left: 20px;
 }
 
 .header-align-left, .header-align-right {
   display: flex;
   padding-right: 50px; /* Only for .header-align-right */
+  margin-top: 20px;
 }
 
 .nav-button{
   padding-left: 20px;
 }
+
+
+
+a {
+  color: black
+}
+
