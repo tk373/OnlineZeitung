@@ -1,25 +1,20 @@
-import { useState, useEffect } from 'react'
-import './Welcome.css'
-import Header from '../components/Header.jsx'
-import Footer from '../components/Footer.jsx'
-import { db } from '../firebaseClient'; // Import Firestore database
-import { collection, getDocs, query, orderBy } from 'firebase/firestore';
-import { Card, CardHeader, CardBody, CardFooter, Divider, Link, Image } from "@nextui-org/react";
+import { useState, useEffect } from 'react';
+import './Welcome.css';
+import Header from '../components/Header.jsx';
+import Footer from '../components/Footer.jsx';
+import { Card, CardHeader, CardBody, CardFooter, Image } from "@nextui-org/react";
 import ComponentGuard from '../auth/ComponentGuard';
 
 function Welcome() {
 
   const [articles, setArticles] = useState([]);
 
-  // Funktion zum Abrufen der Artikel aus Supabase
+  // Function to fetch articles from the backend
   const fetchArticles = async () => {
     try {
-      const q = query(collection(db, 'articles'), orderBy('title', 'desc'));
-      const querySnapshot = await getDocs(q);
-      const fetchedArticles = [];
-      querySnapshot.forEach((doc) => {
-        fetchedArticles.push({ id: doc.id, ...doc.data() });
-      });
+
+      const response = await fetch('https://dposchtbackend.azurewebsites.net/articles'); // Adjust the URL based on your environment
+      const fetchedArticles = await response.json();
       setArticles(fetchedArticles);
     } catch (error) {
       console.error('Error fetching articles:', error);
