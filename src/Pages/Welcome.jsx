@@ -12,6 +12,7 @@ function Welcome() {
   // Function to fetch articles from the backend
   const fetchArticles = async () => {
     try {
+
       const response = await fetch('https://dposchtbackend.azurewebsites.net/articles'); // Adjust the URL based on your environment
       const fetchedArticles = await response.json();
       setArticles(fetchedArticles);

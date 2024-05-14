@@ -1,30 +1,62 @@
 
 .header {
-  background: var(--background); /* Solid primary color for header background */
+  background: var(--background) !important; /* Solid primary color for header background */
   width: 100%;
   display: flex;
   padding: 0;
-  justify-content: space-between;
   height: 11vh;
 }
 
+.header nav{
+  background-color: var(--background) !important;
+}
+
+
+@keyframes fadeInAnimation {
+  0% {
+      opacity: 0;
+  }
+  100% {
+      opacity: 1;
+  }
+}
+
+@media (min-width: 768px) {
+  .page-overlay {
+    position: fixed;
+    top: 11vh;
+    left: 0;
+    right: 20vw;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 499; 
+    animation: fadeInAnimation ease 0.5s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+  }
+
+  .menu-portal {
+    position: absolute;
+    right: 0;
+    width: 20vw; 
+    top: 0;
+    bottom: 0; 
+  }
+  
+  .menu-portal ul{
+    padding-top: 4vh;
+    position: relative;
+    z-index: 500;
+    background-color: var(--background) !important; 
+  }
+}
+
+
 .Logo {
-  color: var(--background); /* Ensures logo stands out against the primary color */
+  color: var(--background);
   margin-top: 0px;
   margin-left: 20px;
 }
-
-.header-align-left, .header-align-right {
-  display: flex;
-  padding-right: 50px; /* Only for .header-align-right */
-  margin-top: 20px;
-}
-
-.nav-button{
-  padding-left: 20px;
-}
-
-
 
 a {
   color: black
