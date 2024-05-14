@@ -14,7 +14,7 @@ function Welcome() {
   // Funktion zum Abrufen der Artikel aus Supabase
   const fetchArticles = async () => {
     try {
-      const q = query(collection(db, 'articles'), orderBy('created_at', 'desc'));
+      const q = query(collection(db, 'articles'), orderBy('title', 'desc'));
       const querySnapshot = await getDocs(q);
       const fetchedArticles = [];
       querySnapshot.forEach((doc) => {
