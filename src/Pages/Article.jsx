@@ -6,7 +6,7 @@ import { db } from '../firebaseClient';
 import { collection, getDocs, query, where } from 'firebase/firestore';
 import Header from '../components/Header.jsx'
 import Footer from '../components/Footer.jsx'
-import { Card, CardHeader, CardBody, CardFooter, Divider, Image } from "@nextui-org/react";
+import { Spacer, Image } from "@nextui-org/react";
 import ReactMarkdown from 'react-markdown';
 
 function Article() {
@@ -42,7 +42,9 @@ function Article() {
         </header>
         <div className="article-container">
         <h1>{article.title}</h1>
+        <Spacer y={4} />
         <p>{article.lead}</p>
+        <Spacer y={4} />
         {article.image_url && (
                   <Image
                     src={article.image_url}
@@ -52,6 +54,7 @@ function Article() {
                     objectFit="cover"
                   />
                 )}
+        <Spacer y={4} />
         <div className="article-content">
         <ReactMarkdown>{article.body}</ReactMarkdown>
         </div>

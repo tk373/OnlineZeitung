@@ -29,6 +29,8 @@
     display: flex;
     justify-content: center;
     background-color: var(--background);
+    width: 80vw;
+      margin-left: 10vw;
   }
   
   

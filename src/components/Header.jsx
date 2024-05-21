@@ -24,12 +24,11 @@ function Header() {
             <label htmlFor="openMenu">Menu</label>
             <NavbarMenuToggle id='openMenu' aria-label="Open Menu" onClick={toggleMenu}/>
             <NavbarMenu className='' aria-label="Header Actions" portalContainer={menuPortalRef.current}>
-              <NavbarMenuItem> <Link class="text-black" href='./'>Diheime</Link> </NavbarMenuItem>
-              <NavbarMenuItem> <Link class="text-black" href='./About'>Über eus</Link> </NavbarMenuItem>
-              <NavbarMenuItem> <Link class="text-black" href='./'>Kontakt</Link> </NavbarMenuItem>
-              <NavbarMenuItem> <Link class="text-black" href='./Abo'>Abo</Link> </NavbarMenuItem>
-              <NavbarMenuItem> <Link class="text-black" href='./Add'>Hinzufügen</Link> </NavbarMenuItem>
-              <NavbarMenuItem> <Link class="text-black" href='./Generate'>Generiere</Link> </NavbarMenuItem>
+              <NavbarMenuItem> <Link class="text-black" href='../'>Diheime</Link> </NavbarMenuItem>
+              <NavbarMenuItem> <Link class="text-black" href='../About'>Über eus</Link> </NavbarMenuItem>
+              <NavbarMenuItem> <Link class="text-black" href='../Abo'>Abo</Link> </NavbarMenuItem>
+              <NavbarMenuItem> <Link class="text-black" href='../Add'>Hinzufügen</Link> </NavbarMenuItem>
+              <NavbarMenuItem> <Link class="text-black" href='../Generate'>Generiere</Link> </NavbarMenuItem>
             </NavbarMenu>
           </NavbarContent>
         </Navbar>
