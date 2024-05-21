@@ -1,23 +1,29 @@
-import React from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import './Header.css'
 import { Navbar, NavbarBrand, NavbarContent, NavbarItem, NavbarMenuToggle, NavbarMenu, NavbarMenuItem, Link } from "@nextui-org/react"
 
 function Header() {
+  const menuPortalRef = useRef(null);
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen);  // Toggle the state when the menu is opened/closed
+  };
+
+  
   return (
+    <>
     <header className="header">
-      <div className="header-align-left">
-        <Link href="./">
-          <img className="Logo" src="./Logo2.svg" alt="Logo" width="70" height="100" />
-        </Link>
-      </div>
-      <div className="header-align-right">
         <Navbar>
-          <NavbarContent>
-            <NavbarMenuToggle aria-label="Open Menu" />
-            <NavbarBrand>
-              Menu
-            </NavbarBrand>
-            <NavbarMenu aria-label="Header Actions">
+        <NavbarBrand>
+        <Link href="/">
+          <img className="Logo" src="../Logo2.svg" alt="Logo" width="70" height="100" />
+        </Link>
+        </NavbarBrand>
+          <NavbarContent justify='end'>
+            <label htmlFor="openMenu">Menu</label>
+            <NavbarMenuToggle id='openMenu' aria-label="Open Menu" onClick={toggleMenu}/>
+            <NavbarMenu className='' aria-label="Header Actions" portalContainer={menuPortalRef.current}>
               <NavbarMenuItem> <Link class="text-black" href='./'>Diheime</Link> </NavbarMenuItem>
               <NavbarMenuItem> <Link class="text-black" href='./About'>Über eus</Link> </NavbarMenuItem>
               <NavbarMenuItem> <Link class="text-black" href='./'>Kontakt</Link> </NavbarMenuItem>
@@ -27,8 +33,10 @@ function Header() {
             </NavbarMenu>
           </NavbarContent>
         </Navbar>
-      </div>
+      <div ref={menuPortalRef} className="menu-portal"></div>
     </header>
+    {menuOpen && <div className="page-overlay"></div>}
+    </>
   );
 }
 
