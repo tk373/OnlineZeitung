@@ -28,7 +28,6 @@ function Login() {
         password: password,
       });
       if (error) throw error;
-      alert(`Registration successful! Check your email for the confirmation link.`);
     } catch (error) {
       alert(`Error: ${error.message}`);
     } finally {
