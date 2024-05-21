@@ -56,7 +56,7 @@ function Article() {
                 )}
         <Spacer y={4} />
         <div className="article-content">
-        <ReactMarkdown>{article.body}</ReactMarkdown>
+        {article.body}
         </div>
         </div>
         <Footer />
