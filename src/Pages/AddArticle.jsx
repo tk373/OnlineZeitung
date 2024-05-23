@@ -122,7 +122,7 @@ const handleSubmit = async (event) => {
   )}
     </div>
     <Spacer y={1} />
-      <Button type="submit">Press me</Button>
+      <Button type="submit">Publish</Button>
     </form>
     </div>
     <Footer/>

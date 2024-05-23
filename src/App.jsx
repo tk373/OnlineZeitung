@@ -9,6 +9,7 @@ import Generate from './Pages/Generate';
 import Register from './Pages/Register';
 import Login from './Pages/Login';
 import AuthGuard from './auth/AuthGuard';
+import Article from './Pages/Article.jsx'
 
 function App() {
   
@@ -20,9 +21,9 @@ function App() {
         <Route path="/About" element={<About />} />
         <Route path="/Abo" element={<Abo />} />
         <Route path='/Generate' element={<AuthGuard><Generate /></AuthGuard>} />
-        <Route path='/Register' element={<Register />} />
+        <Route path='/Register' element={<AuthGuard><Register /></AuthGuard>} />
         <Route path='/Login' element={<Login />} />
-
+        <Route path="/article/:title" element={<Article />} />
       </Routes>
   )
 }
