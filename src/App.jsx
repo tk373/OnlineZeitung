@@ -21,7 +21,7 @@ function App() {
         <Route path="/About" element={<About />} />
         <Route path="/Abo" element={<Abo />} />
         <Route path='/Generate' element={<AuthGuard><Generate /></AuthGuard>} />
-        <Route path='/Register' element={<AuthGuard><Register /></AuthGuard>} />
+        <Route path='/Register' element={<Register />} />
         <Route path='/Login' element={<Login />} />
         <Route path="/article/:title" element={<Article />} />
       </Routes>

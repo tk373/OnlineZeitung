@@ -49,15 +49,6 @@ function Welcome() {
               <h1 className="text-7xl">Herzlich willkomme uf de Homepage vo de Poscht</h1>
             </div>
           </CardHeader>
-          <CardBody>
-            <p className="text-2xl">
-              Ihrer vertrauenswürdigen Quelle für Nachrichten und Analysen. Bei uns finden Sie tiefgehende Berichterstattung zu den wichtigsten Themen unserer Zeit – von lokalen Ereignissen bis hin zu globalen Entwicklungen.
-              <br></br>
-              <br></br>
-              Wir sind stolz darauf, Ihnen eine Plattform bieten zu können, auf der Journalismus noch echte Bedeutung hat. Entdecken Sie mit uns die Geschichten, die die Welt bewegen. Vielen Dank, dass Sie uns gewählt haben, um informiert zu bleiben.
-            </p>
-
-          </CardBody>
         </Card>
       </div>
       <div className="bodyContainer">

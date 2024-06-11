@@ -1,5 +1,4 @@
 import { Button, Input, Spacer } from '@nextui-org/react';
-import { createClient } from '@supabase/supabase-js';
 import React, { useState } from 'react';
 import supabase from '../supabaseClient';
 import Header from '../components/Header.jsx'
@@ -7,11 +6,15 @@ import Footer from '../components/Footer.jsx'
 import {EyeFilledIcon} from "../assets/EyeFilledIcon";
 import {EyeSlashFilledIcon} from "../assets/EyeSlashFilledIcon";
 import { useNavigate } from 'react-router-dom';
+import { doc, addDoc, setDoc } from 'firebase/firestore';
+import { app, db } from '../firebaseClient';
 
 function Register() {
   const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [name, setName] = useState('');
+  const [nachname, setNachname] = useState('');
   const [isVisible, setIsVisible] = React.useState(false);
   const navigate = useNavigate();
 
@@ -20,19 +23,32 @@ function Register() {
   const handleRegister = async () => {
     try {
       setLoading(true);
-      const { error } = await supabase.auth.signUp({
+      const { data, error } = await supabase.auth.signUp({
         email: email,
         password: password,
       });
       if (error) throw error;
-      alert(`Registration successful! Check your email for the confirmation link.`);
+      const user = data.user;
+      if (user) {
+        await setDoc(doc(db, 'users', user.id), {
+          email: email,
+          generationsLeft: 50,
+          profilePicture: null,
+          userId: user.id,
+          userTier: 'user',
+          name: name,
+          nachname: nachname,
+        });
+      }
+      alert('Registration successful! Check your email for the confirmation link.');
+      navigate('/');
     } catch (error) {
       alert(`Error: ${error.message}`);
     } finally {
       setLoading(false);
-      navigate('/');
     }
   };
+
 
   return (
     <div className="App">
@@ -50,7 +66,25 @@ function Register() {
       onChange={(e) => setEmail(e.target.value)}
       className="max-w-xs"
         />
-      <Spacer y={1} />
+     <Spacer y={1} />
+        <Input
+          label="Name"
+          variant="bordered"
+          placeholder="Enter your name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          className="max-w-xs"
+        />
+        <Spacer y={1} />
+        <Input
+          label="Nachname"
+          variant="bordered"
+          placeholder="Enter your nachname"
+          value={nachname}
+          onChange={(e) => setNachname(e.target.value)}
+          className="max-w-xs"
+        />
+        <Spacer y={1} />
       <Input
       label="Password"
       variant="bordered"

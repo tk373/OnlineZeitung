@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 :root {
-  font-family: Cambria, Cochin, New Roman, serif;
+  font-family: "Source Serif Pro", "Times New Roman", Helvetica, serif;
   line-height: 1.5;
   font-weight: 400;
   
