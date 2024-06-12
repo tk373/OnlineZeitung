@@ -1,40 +1,32 @@
 import React, { useRef, useEffect, useState } from 'react';
 import './Header.css'
-import { Navbar, NavbarBrand, NavbarContent, NavbarItem, NavbarMenuToggle, NavbarMenu, NavbarMenuItem, Link } from "@nextui-org/react"
 
 function Header() {
-  const menuPortalRef = useRef(null);
-  const [menuOpen, setMenuOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleMenu = () => {
-    setMenuOpen(!menuOpen);  // Toggle the state when the menu is opened/closed
+    setIsMenuOpen(!isMenuOpen);
   };
 
   
   return (
     <>
-    <header className="header">
-        <Navbar>
-        <NavbarBrand>
-        <Link href="/">
-          <img className="Logo" src="../Logo2.svg" alt="Logo" width="70" height="100" />
-        </Link>
-        </NavbarBrand>
-          <NavbarContent justify='end'>
-            <label htmlFor="openMenu">Menu</label>
-            <NavbarMenuToggle id='openMenu' aria-label="Open Menu" onClick={toggleMenu}/>
-            <NavbarMenu className='' aria-label="Header Actions" portalContainer={menuPortalRef.current}>
-              <NavbarMenuItem> <Link class="text-black" href='../'>Diheime</Link> </NavbarMenuItem>
-              <NavbarMenuItem> <Link class="text-black" href='../About'>Über eus</Link> </NavbarMenuItem>
-              <NavbarMenuItem> <Link class="text-black" href='../Abo'>Abo</Link> </NavbarMenuItem>
-              <NavbarMenuItem> <Link class="text-black" href='../Add'>Hinzufügen</Link> </NavbarMenuItem>
-              <NavbarMenuItem> <Link class="text-black" href='../Generate'>Generiere</Link> </NavbarMenuItem>
-            </NavbarMenu>
-          </NavbarContent>
-        </Navbar>
-      <div ref={menuPortalRef} className="menu-portal"></div>
-    </header>
-    {menuOpen && <div className="page-overlay"></div>}
+      <header className="header">
+        <div className="logo">
+          <a href="/">
+            <img src="../Logo2.svg" alt="Logo" width="70" height="100" />
+          </a>
+        </div>
+        <button className="menu-toggle" onClick={toggleMenu}>Menu</button>
+        <div className={`menu ${isMenuOpen ? 'open' : 'closed'}`}>
+          <a href="/" className="menu-item">Diheime</a>
+          <a href="/About" className="menu-item">Über eus</a>
+          <a href="/Abo" className="menu-item">Abo</a>
+          <a href="/Add" className="menu-item">Hinzufügen</a>
+          <a href="/Generate" className="menu-item">Generiere</a>
+        </div>
+      </header>
+      {isMenuOpen && <div className="overlay" onClick={toggleMenu}></div>}
     </>
   );
 }

@@ -1,64 +1,53 @@
-
 .header {
-  background: var(--background) !important; /* Solid primary color for header background */
-  width: 100%;
   display: flex;
-  padding: 0;
-  height: 11vh;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
 }
 
-.header nav{
-  background-color: var(--background) !important;
+.logo img {
+  height: 100px; /* adjust as necessary */
 }
 
-
-@keyframes fadeInAnimation {
-  0% {
-      opacity: 0;
-  }
-  100% {
-      opacity: 1;
-  }
+.menu-toggle {
+  cursor: pointer;
 }
 
-@media (min-width: 768px) {
-  .page-overlay {
-    position: fixed;
-    top: 11vh;
-    left: 0;
-    right: 20vw;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.6);
-    z-index: 499; 
-    animation: fadeInAnimation ease 0.5s;
-    animation-iteration-count: 1;
-    animation-fill-mode: forwards;
-  }
-
-  .menu-portal {
-    position: absolute;
-    right: 0;
-    width: 20vw; 
-    top: 0;
-    bottom: 0; 
-  }
-  
-  .menu-portal ul{
-    padding-top: 4vh;
-    position: relative;
-    z-index: 500;
-    background-color: var(--background) !important; 
-  }
+.menu {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 0;
+  height: 100vh;
+  background-color: white;
+  overflow: hidden;
+  transition: width 0.3s ease-in-out;
+  z-index: 401;
 }
 
-
-.Logo {
-  color: var(--background);
-  margin-top: 0px;
-  margin-left: 20px;
+.menu.open {
+  width: 20vw;
 }
 
-a {
-  color: black
+.menu.closed {
+  width: 0;
+}
+
+.menu-item {
+  display: block;
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+  color: black; /* or any color */
+  text-decoration: none;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 400;
 }
 

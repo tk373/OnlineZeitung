@@ -29,8 +29,6 @@
   
 }
 
-
-
 a {
   font-weight: 500;
   color: #646cff;
@@ -46,6 +44,10 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+}
+
+#pageLayout{
+  max-width: 70vw;
 }
 
 h1 {

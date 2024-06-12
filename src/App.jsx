@@ -11,11 +11,13 @@ import Login from './Pages/Login';
 import AuthGuard from './auth/AuthGuard';
 import Article from './Pages/Article.jsx'
 import UnauthorizedPage from './auth/unauthorized.jsx';
+import Layout from './assets/Layout.jsx';
 
 function App() {
   
 
   return (
+    <Layout>
       <Routes>
         <Route path="/" element={<Welcome />} />
         <Route path="/Add" element={<AuthGuard requiredTier="admin"><AddArticle /></AuthGuard>} />
@@ -27,6 +29,7 @@ function App() {
         <Route path="/article/:title" element={<Article />} />
         <Route path="/unauthorized" element={<UnauthorizedPage />} />
       </Routes>
+    </Layout>
   )
 }
 

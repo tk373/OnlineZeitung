@@ -13,7 +13,6 @@ function Welcome() {
 
   const [articles, setArticles] = useState([]);
 
-  // Funktion zum Abrufen der Artikel aus Supabase
   const fetchArticles = async () => {
     try {
       const q = query(collection(db, 'articles'), orderBy('title', 'desc'));

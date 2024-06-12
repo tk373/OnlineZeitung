@@ -1,8 +1,8 @@
 import { Button, Input, Spacer } from '@nextui-org/react';
 import React, { useState } from 'react';
 import supabase from '../supabaseClient';
-import Header from '../components/Header.jsx'
-import Footer from '../components/Footer.jsx'
+import Header from '../components/Header.jsx';
+import Footer from '../components/Footer.jsx';
 import {EyeFilledIcon} from "../assets/EyeFilledIcon";
 import {EyeSlashFilledIcon} from "../assets/EyeSlashFilledIcon";
 import { useNavigate } from 'react-router-dom';

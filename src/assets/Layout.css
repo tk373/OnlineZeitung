@@ -1,0 +1,6 @@
+.layoutContainer{
+    width: '80vw' !important; 
+    margin: '0 auto';
+    background-color: var(--background);
+    min-height: "100%";
+}
