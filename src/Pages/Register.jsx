@@ -6,8 +6,8 @@ import Footer from '../components/Footer.jsx'
 import {EyeFilledIcon} from "../assets/EyeFilledIcon";
 import {EyeSlashFilledIcon} from "../assets/EyeSlashFilledIcon";
 import { useNavigate } from 'react-router-dom';
-import { doc, addDoc, setDoc } from 'firebase/firestore';
-import { app, db } from '../firebaseClient';
+import { doc, setDoc } from 'firebase/firestore';
+import { db } from '../firebaseClient';
 
 function Register() {
   const [loading, setLoading] = useState(false);

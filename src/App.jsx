@@ -10,6 +10,7 @@ import Register from './Pages/Register';
 import Login from './Pages/Login';
 import AuthGuard from './auth/AuthGuard';
 import Article from './Pages/Article.jsx'
+import UnauthorizedPage from './auth/unauthorized.jsx';
 
 function App() {
   
@@ -17,13 +18,14 @@ function App() {
   return (
       <Routes>
         <Route path="/" element={<Welcome />} />
-        <Route path="/Add" element={<AuthGuard><AddArticle /></AuthGuard>} />
+        <Route path="/Add" element={<AuthGuard requiredTier="admin"><AddArticle /></AuthGuard>} />
         <Route path="/About" element={<About />} />
         <Route path="/Abo" element={<Abo />} />
-        <Route path='/Generate' element={<AuthGuard><Generate /></AuthGuard>} />
+        <Route path='/Generate' element={<AuthGuard requiredTier="abo"><Generate /></AuthGuard>} />
         <Route path='/Register' element={<Register />} />
         <Route path='/Login' element={<Login />} />
         <Route path="/article/:title" element={<Article />} />
+        <Route path="/unauthorized" element={<UnauthorizedPage />} />
       </Routes>
   )
 }
