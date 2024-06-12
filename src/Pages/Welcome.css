@@ -6,6 +6,10 @@
       flex-direction: column;
       background-color: var(--background);
   }
+
+  div[data-overlay-container="true"]{
+    background-color: var(--background);
+  }
   
   .App {
       display: flex;
