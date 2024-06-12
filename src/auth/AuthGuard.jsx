@@ -18,6 +18,15 @@ const AuthGuard = ({ children, requiredTier }) => {
   };
 
   useEffect(() => {
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setSession(session);
+      if (session) {
+        checkUserTier(session.user.id);
+      } else {
+        navigate('/login');
+      }
+    });
+
     const checkUserTier = async (userId) => {
       try {
         const userDoc = await getDoc(doc(db, 'users', userId));
@@ -28,6 +37,7 @@ const AuthGuard = ({ children, requiredTier }) => {
             navigate('/unauthorized');
           }
         } else {
+          console.log("user not found");
           navigate('/login');
         }
       } catch (error) {
@@ -38,15 +48,6 @@ const AuthGuard = ({ children, requiredTier }) => {
       }
     };
 
-    // Fetch the current session once on component mount
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      setSession(session);
-      if (session) {
-        checkUserTier(session.user.id);
-      } else {
-        navigate('/login');
-      }
-    });
 
     // Listen for changes in auth state
     const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
