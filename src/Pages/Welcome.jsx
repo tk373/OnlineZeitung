@@ -51,7 +51,7 @@ function Welcome() {
         </Card>
       </div>
       <div className="bodyContainer">
-      <ComponentGuard>
+      <ComponentGuard requiredTier="abo">
       <div className="articlesContainer">
       {articles.map((article) => {
           const [date, time] = article.created_at?.split('T') || ['', '']; // Handle missing 'created_at'
