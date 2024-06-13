@@ -14,30 +14,34 @@ const AuthGuard = ({ children, requiredTier }) => {
   const tierPriority = {
     'user': 1,
     'abo': 2,
-    'admin': 3
+    'author':3,
+    'admin': 4
   };
 
   useEffect(() => {
-    supabase.auth.getSession().then(({ data: { session } }) => {
+    const sessionCheck = async () => {
+      const { data: { session } } = await supabase.auth.getSession();
       setSession(session);
       if (session) {
-        checkUserTier(session.user.id);
+        await checkUserTier(session.user.id);
       } else {
         navigate('/login');
       }
-    });
+    };
+
+    sessionCheck();
 
     const checkUserTier = async (userId) => {
       try {
         const userDoc = await getDoc(doc(db, 'users', userId));
         if (userDoc.exists()) {
-          const userTier = userDoc.data().userTier;
-          setUserTier(userTier);
-          if (tierPriority[userTier] < tierPriority[requiredTier]) {
+          const tier = userDoc.data().userTier;
+          setUserTier(tier);
+          if (tierPriority[tier] < tierPriority[requiredTier]) {
             navigate('/unauthorized');
           }
         } else {
-          console.log("user not found");
+          console.log("User not found");
           navigate('/login');
         }
       } catch (error) {
@@ -47,7 +51,6 @@ const AuthGuard = ({ children, requiredTier }) => {
         setCheckingAuth(false);
       }
     };
-
 
     // Listen for changes in auth state
     const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
@@ -66,7 +69,6 @@ const AuthGuard = ({ children, requiredTier }) => {
     return null; // Or a loading spinner, if preferred
   }
 
-  // Render children if session exists and user tier is correct
   return session && (tierPriority[userTier] >= tierPriority[requiredTier]) ? children : null;
 };
 

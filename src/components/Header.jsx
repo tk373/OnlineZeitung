@@ -1,5 +1,6 @@
 import React, { useRef, useEffect, useState } from 'react';
 import './Header.css'
+import supabase from '../supabaseClient'
 
 function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -8,6 +9,10 @@ function Header() {
     setIsMenuOpen(!isMenuOpen);
   };
 
+  const handleLogout = async () => {
+    let { error } = await supabase.auth.signOut();
+    if (error) console.log('Logout error:', error.message);
+  };
   
   return (
     <>
@@ -24,6 +29,7 @@ function Header() {
           <a href="/Abo" className="menu-item">Abo</a>
           <a href="/Add" className="menu-item">Hinzufügen</a>
           <a href="/Generate" className="menu-item">Generiere</a>
+          <button onClick={handleLogout} className="menu-item logout-button">Logout</button>
         </div>
       </header>
       {isMenuOpen && <div className="overlay" onClick={toggleMenu}></div>}
