@@ -1,6 +1,8 @@
 import React, { useRef, useEffect, useState } from 'react';
-import './Header.css'
-import supabase from '../supabaseClient'
+import './Header.css';
+import supabase from '../supabaseClient';
+import { Button, Input, Spacer } from '@nextui-org/react';
+import AuthGuard from '../auth/AuthGuard';
 
 function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -24,6 +26,7 @@ function Header() {
         </div>
         <button className="menu-toggle" onClick={toggleMenu}>Menu</button>
         <div className={`menu ${isMenuOpen ? 'open' : 'closed'}`}>
+          <Spacer y={10} />
           <a href="/" className="menu-item">Diheime</a>
           <a href="/About" className="menu-item">Über eus</a>
           <a href="/Abo" className="menu-item">Abo</a>
