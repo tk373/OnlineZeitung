@@ -54,7 +54,7 @@ function Welcome() {
       <ComponentGuard requiredTier="abo">
       <div className="articlesContainer">
       {articles.map((article) => {
-          const [date, time] = article.created_at?.split('T') || ['', '']; // Handle missing 'created_at'
+          const [date, time] = article.created_at?.split('T') || ['', ''];
           const formattedTime = time.split('.')[0];
           return (
             <Link to={`/article/${toUrlFriendly(article.title)}`} key={article.id} style={{ textDecoration: 'none' }}>

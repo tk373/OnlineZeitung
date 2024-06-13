@@ -12,7 +12,7 @@ const ComponentGuard = ({ children, requiredTier }) => {
   const tierPriority = {
     'user': 1,
     'abo': 2,
-    'author':3,
+    'author': 3,
     'admin': 4
   };
 

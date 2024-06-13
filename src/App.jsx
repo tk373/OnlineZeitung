@@ -20,7 +20,7 @@ function App() {
     <Layout>
       <Routes>
         <Route path="/" element={<Welcome />} />
-        <Route path="/Add" element={<AuthGuard requiredTier="admin"><AddArticle /></AuthGuard>} />
+        <Route path="/Add" element={<AuthGuard requiredTier="author"><AddArticle /></AuthGuard>} />
         <Route path="/About" element={<About />} />
         <Route path="/Abo" element={<Abo />} />
         <Route path='/Generate' element={<AuthGuard requiredTier="abo"><Generate /></AuthGuard>} />
