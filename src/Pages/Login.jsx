@@ -47,15 +47,16 @@ function Login() {
       type="email"
       label="Email"
       variant="bordered"
-      placeholder="Enter your email"
+      placeholder="Email eingeben"
       value={email}
       onChange={(e) => setEmail(e.target.value)}
+      onClear={() => setEmail("")}
         />
       <Spacer y={3} />
       <Input
       label="Password"
       variant="bordered"
-      placeholder="Enter your password"
+      placeholder="Passwort eingeben"
       endContent={
         <button className="focus:outline-none" type="button" onClick={toggleVisibility}>
           {isVisible ? (
