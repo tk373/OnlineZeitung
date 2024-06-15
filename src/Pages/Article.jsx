@@ -72,9 +72,9 @@ function Article() {
                 remarkPlugins={[remarkGfm, remarkBreaks, remarkHtml, remarkMath, remarkSlug, remarkToc]}
                 rehypePlugins={[rehypeKatex, rehypeRaw]}
               >
-                {paragraph}
+               {paragraph}
               </ReactMarkdown>
-              {index < paragraphs.length - 1 && <Spacer y={2} />}
+              {index < paragraphs.length - 1 && <Spacer y={10} />}
             </React.Fragment>
           ))}
         </div>

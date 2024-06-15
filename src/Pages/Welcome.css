@@ -38,7 +38,7 @@
   
   .articlesContainer {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(18vw, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(14vw, 1fr));
     gap: 20px;
     padding: 20px;
     width: 100%;
