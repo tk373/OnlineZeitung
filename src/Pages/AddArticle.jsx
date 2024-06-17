@@ -16,6 +16,7 @@ function AddArticle() {
   const [body, setBody] = useState('');
   const [image, setImage] = useState(null);
   const [inputKey, setInputKey] = useState(Date.now());
+  const [paragraphs, setParagraphs] = useState(['']);
 
   const handleImageChange = (event) => {
     if (event.target.files.length > 0) {
@@ -27,6 +28,16 @@ function AddArticle() {
   const handleClearImage = () => {
     setImage(null);
     setInputKey(Date.now()); 
+};
+
+const handleParagraphChange = (index, value) => {
+  const newParagraphs = [...paragraphs];
+  newParagraphs[index] = value;
+  setParagraphs(newParagraphs);
+};
+
+const handleAddParagraph = () => {
+  setParagraphs([...paragraphs, '']);
 };
 
 const handleSubmit = async (event) => {
@@ -53,14 +64,14 @@ const handleSubmit = async (event) => {
     await addDoc(collection(db, 'articles'), {
       title,
       lead,
-      body,
+      body: paragraphs.join('\n\n'),
       image_url: imageUrl,
     });
 
     // Reset form state
     setTitle('');
     setLead('');
-    setBody('');
+    setParagraphs(['']);
     setImage(null);
     setInputKey(Date.now());
   } catch (error) {
@@ -98,15 +109,22 @@ const handleSubmit = async (event) => {
         />
       </div>
       <div>
-        <Textarea
-        isRequired
-        label="Body"
-        placeholder="Enter your Textbody"
-        labelPlacement="outside"
-        className="max-w-xs light"
-        value={body}
-        onChange={(e) => setBody(e.target.value)}
-        />
+      {paragraphs.map((paragraph, index) => (
+            <div key={index}>
+              <Textarea
+                isRequired
+                label={`Paragraph ${index + 1}`}
+                placeholder="Enter your paragraph"
+                labelPlacement="outside"
+                className="max-w-xs light"
+                value={paragraph}
+                onChange={(e) => handleParagraphChange(index, e.target.value)}
+              />
+            </div>
+          ))}
+          <Button type="button" onClick={handleAddParagraph}>
+            Add Paragraph
+          </Button>
       </div>
       <div>
       <Spacer y={3} />

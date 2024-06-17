@@ -9,7 +9,7 @@ import {EyeSlashFilledIcon} from "../assets/EyeSlashFilledIcon";
 import { useNavigate } from 'react-router-dom';
 import { Auth } from '@supabase/auth-ui-react';
 import { ThemeSupa } from '@supabase/auth-ui-shared';
-import { Card, CardHeader, CardBody, CardFooter, Divider, Link, Image } from "@nextui-org/react";
+import { Card } from "@nextui-org/react";
 
 function Login() {
   const [loading, setLoading] = useState(false);
@@ -47,15 +47,16 @@ function Login() {
       type="email"
       label="Email"
       variant="bordered"
-      placeholder="Enter your email"
+      placeholder="Email eingeben"
       value={email}
       onChange={(e) => setEmail(e.target.value)}
+      onClear={() => setEmail("")}
         />
       <Spacer y={3} />
       <Input
       label="Password"
       variant="bordered"
-      placeholder="Enter your password"
+      placeholder="Passwort eingeben"
       endContent={
         <button className="focus:outline-none" type="button" onClick={toggleVisibility}>
           {isVisible ? (

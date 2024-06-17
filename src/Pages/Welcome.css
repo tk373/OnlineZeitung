@@ -6,6 +6,10 @@
       flex-direction: column;
       background-color: var(--background);
   }
+
+  div[data-overlay-container="true"]{
+    background-color: var(--background);
+  }
   
   .App {
       display: flex;
@@ -21,22 +25,20 @@
       justify-content: center;
       align-items: center;
       background-color: var(--background);
-      width: 80vw;
-      margin-left: 10vw;
+      width: 100%;
   }
 
   .bodyContainer{
     display: flex;
     justify-content: center;
     background-color: var(--background);
-    width: 80vw;
-      margin-left: 10vw;
+    width: 100%;
   }
   
   
   .articlesContainer {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(18vw, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(14vw, 1fr));
     gap: 20px;
     padding: 20px;
     width: 100%;

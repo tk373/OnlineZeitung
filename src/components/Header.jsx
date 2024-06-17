@@ -1,40 +1,104 @@
 import React, { useRef, useEffect, useState } from 'react';
-import './Header.css'
-import { Navbar, NavbarBrand, NavbarContent, NavbarItem, NavbarMenuToggle, NavbarMenu, NavbarMenuItem, Link } from "@nextui-org/react"
+import './Header.css';
+import supabase from '../supabaseClient';
+import { Button, Input, Spacer, Tabs, Tab } from '@nextui-org/react';
+import { db } from '../firebaseClient';
+import { doc, getDoc } from 'firebase/firestore';
+import { useLocation } from 'react-router-dom';
+import { FaLock } from 'react-icons/fa';
 
 function Header() {
-  const menuPortalRef = useRef(null);
-  const [menuOpen, setMenuOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [userTier, setUserTier] = useState(null);
+  const [session, setSession] = useState(null);
+  const location = useLocation();
 
-  const toggleMenu = () => {
-    setMenuOpen(!menuOpen);  // Toggle the state when the menu is opened/closed
+  const tierPriority = {
+    'user': 1,
+    'abo': 2,
+    'author': 3,
+    'admin': 4
   };
 
+  useEffect(() => {
+    const initAuth = async () => {
+      const { data: { session } } = await supabase.auth.getSession();
+      setSession(session);
+      if (session) {
+        await fetchUserTier(session.user.id);
+      }
+    };
+
+    const fetchUserTier = async (userId) => {
+      const userDoc = await getDoc(doc(db, 'users', userId));
+      if (userDoc.exists()) {
+        const tier = userDoc.data().userTier;
+        setUserTier(tier);
+      }
+    };
+
+    initAuth();
+
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+      setSession(session);
+      if (session) {
+        fetchUserTier(session.user.id);
+      }
+    });
+
+    return () => subscription.unsubscribe();
+  }, []);
+
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
+  const handleLogout = async () => {
+    let { error } = await supabase.auth.signOut();
+    if (error) console.log('Logout error:', error.message);
+  };
   
   return (
     <>
-    <header className="header">
-        <Navbar>
-        <NavbarBrand>
-        <Link href="/">
-          <img className="Logo" src="../Logo2.svg" alt="Logo" width="70" height="100" />
-        </Link>
-        </NavbarBrand>
-          <NavbarContent justify='end'>
-            <label htmlFor="openMenu">Menu</label>
-            <NavbarMenuToggle id='openMenu' aria-label="Open Menu" onClick={toggleMenu}/>
-            <NavbarMenu className='' aria-label="Header Actions" portalContainer={menuPortalRef.current}>
-              <NavbarMenuItem> <Link class="text-black" href='../'>Diheime</Link> </NavbarMenuItem>
-              <NavbarMenuItem> <Link class="text-black" href='../About'>Über eus</Link> </NavbarMenuItem>
-              <NavbarMenuItem> <Link class="text-black" href='../Abo'>Abo</Link> </NavbarMenuItem>
-              <NavbarMenuItem> <Link class="text-black" href='../Add'>Hinzufügen</Link> </NavbarMenuItem>
-              <NavbarMenuItem> <Link class="text-black" href='../Generate'>Generiere</Link> </NavbarMenuItem>
-            </NavbarMenu>
-          </NavbarContent>
-        </Navbar>
-      <div ref={menuPortalRef} className="menu-portal"></div>
-    </header>
-    {menuOpen && <div className="page-overlay"></div>}
+      <header className="header">
+        <div className="logo">
+          <a href="/">
+            <img src="../Logo2.svg" alt="Logo" width="70" height="100" />
+          </a>
+        </div>
+        <div>
+          <Tabs selectedKey={location.pathname} aria-label="Tabs">
+          <Tab key="/" href="/" title="Home" />
+          <Tab key="/About" href="/About" title="Community" />
+        </Tabs>
+        <Button color="primary" startContent={<FaLock />}>
+        Abo
+        </Button></div>
+        <button className="menu-toggle" onClick={toggleMenu}>Menu</button>
+        <div className={`menu ${isMenuOpen ? 'open' : 'closed'}`}>
+          <Spacer y={1} />
+          <a href="/" className="menu-item">Diheime</a>
+          <a href="/About" className="menu-item">Über eus</a>
+          <a href="/Abo" className="menu-item">Abo</a>
+          {userTier && tierPriority[userTier] >= tierPriority['abo'] && (
+             <>
+             <a href="/Generate" className="menu-item">Generiere</a>
+           </>
+          )}
+          {userTier && tierPriority[userTier] >= tierPriority['author'] && (
+            <>
+              <a href="/Add" className="menu-item">Hinzufügen</a>
+            </>
+          )}
+          {session ? (
+            <button onClick={handleLogout} className="menu-item logout-button">Logout</button>
+          ) : (
+            <a href="/Login" className="menu-item">Login</a>
+          )}
+        </div>
+      </header>
+      {isMenuOpen && <div className="overlay" onClick={toggleMenu}></div>}
     </>
   );
 }
