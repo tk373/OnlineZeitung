@@ -29,7 +29,7 @@ function App() {
         <Route path='/Login' element={<Login />} />
         <Route path="/article/:title" element={<Article />} />
         <Route path="/unauthorized" element={<UnauthorizedPage />} />
-        <Route path="/community" element={<Community />} />
+        <Route path="/Community" element={<Community />} />
       </Routes>
     </Layout>
   )

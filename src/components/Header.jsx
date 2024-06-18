@@ -70,7 +70,7 @@ function Header() {
         <div>
           <Tabs selectedKey={location.pathname} aria-label="Tabs">
           <Tab key="/" href="/" title="D'Poscht" />
-          <Tab key="/About" href="/About" title="Community" />
+          <Tab key="/Community" href="/Community" title="Community" />
         </Tabs>
         <Button color="primary" startContent={<FaLock />}>
         Abo
