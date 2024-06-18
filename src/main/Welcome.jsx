@@ -56,7 +56,7 @@ function Welcome() {
           const [date, time] = article.created_at?.split('T') || ['', ''];
           const formattedTime = time.split('.')[0];
           return (
-            <Link to={`/article/${toUrlFriendly(article.title)}`} key={article.id} style={{ textDecoration: 'none' }}>
+            <Link to={`/Home/article/${toUrlFriendly(article.title)}`} key={article.id} style={{ textDecoration: 'none' }}>
             <Card key={article.id} hoverable clickable>
               <CardHeader className="flex items-center justify-between">
                 {article.image_url && (

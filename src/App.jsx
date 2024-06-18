@@ -20,14 +20,14 @@ function App() {
   return (
     <Layout>
       <Routes>
-        <Route path="/" element={<Welcome />} />
+        <Route path="/Home" element={<Welcome />} />
         <Route path="/Add" element={<AuthGuard requiredTier="author"><AddArticle /></AuthGuard>} />
         <Route path="/About" element={<About />} />
         <Route path="/Abo" element={<Abo />} />
         <Route path='/Generate' element={<AuthGuard requiredTier="abo"><Generate /></AuthGuard>} />
         <Route path='/Register' element={<Register />} />
         <Route path='/Login' element={<Login />} />
-        <Route path="/article/:title" element={<Article />} />
+        <Route path="/Home/article/:title" element={<Article />} />
         <Route path="/unauthorized" element={<UnauthorizedPage />} />
         <Route path="/Community" element={<Community />} />
       </Routes>

@@ -41,7 +41,7 @@ function Register() {
         });
       }
       alert('Registration successful! Check your email for the confirmation link.');
-      navigate('/');
+      navigate('/Home');
     } catch (error) {
       alert(`Error: ${error.message}`);
     } finally {
@@ -64,6 +64,7 @@ function Register() {
       placeholder="Enter your email"
       value={email}
       onChange={(e) => setEmail(e.target.value)}
+      onClear={() => setEmail("")}
       className="max-w-xs"
         />
      <Spacer y={1} />

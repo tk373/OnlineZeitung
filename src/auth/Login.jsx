@@ -31,7 +31,7 @@ function Login() {
     } catch (error) {
       alert(`Error: ${error.message}`);
     } finally {
-      navigate("/");
+      navigate("/Home");
     }
   };
 
