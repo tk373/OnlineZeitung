@@ -35,7 +35,7 @@ const AuthGuard = ({ children, requiredTier }) => {
       try {
         const userDoc = await getDoc(doc(db, 'users', userId));
         if (userDoc.exists()) {
-          const tier = userDoc.data().userTier;
+          const tier = userDoc.data().userTier; 
           setUserTier(tier);
           if (tierPriority[tier] < tierPriority[requiredTier]) {
             navigate('/unauthorized');

@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react'
 import './Welcome.css'
 import Header from '../components/Header.jsx'
 import Footer from '../components/Footer.jsx'
-import Article from '../Pages/Article.jsx'
 import { db } from '../firebaseClient'; // Import Firestore database
 import { collection, getDocs, query, orderBy } from 'firebase/firestore';
 import { Card, CardHeader, CardBody, CardFooter, Divider, Image } from "@nextui-org/react";
