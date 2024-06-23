@@ -30,9 +30,8 @@
   
   .article-content {
     width: 100%;
-    font-family: var(--font-paragraph);
-    font-size: 1.8rem;
-    line-height: 3rem;
+    font-size: 1.125rem;
+    line-height: 1.8rem;
   }
 
   h2{
@@ -45,15 +44,15 @@
   }
 
   .title{
-    font-size: 4.9rem;
-    line-height: 5.2rem;
+    font-size: 3rem;
+    line-height: 3.25rem;
     font-family: var(--font-title);
-    font-weight: 600;
+    font-weight:bold !important;
   }
   
   .lead{
-    font-size: 2rem;
-    line-height: 2.9rem;
+    font-size: 1.25rem;
+    line-height: 1.8rem;
     font-weight: 400;
     font-family: var(--font-lead);
   }

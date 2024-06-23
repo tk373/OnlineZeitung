@@ -68,7 +68,7 @@ function Header() {
             <img src="../../Logo2.svg" alt="Logo" width="70" height="100" />
           </a>
         </div>
-        <div>
+        <div className='MiddleNavigation'>
           <Tabs selectedKey={location.pathname.split('/')[1]} aria-label="Tabs">
           <Tab key="Home" href="/Home" title="D'Poscht"/>
           <Tab key="Community" href="/Community" title="Community" />

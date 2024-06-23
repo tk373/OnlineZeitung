@@ -4,11 +4,11 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
 :root {
   font-family: "Source Serif Pro", "Times New Roman", Helvetica, serif;
   line-height: 1.5;
   font-weight: 400;
-  font-size: 10px;
   
   height: 100vh;
   width: 100vw;
@@ -32,8 +32,6 @@
   --font-title: "Source Serif Pro","Times New Roman",Helvetica,serif;
   --font-paragraph: "Noto Serif","Times New Roman",Helvetica,serif;
   --font-lead: "IBM Plex Sans","Helvetica",Arial,Verdana,Helvetica,sans-serif;
-
-  
 }
 
 a {
@@ -54,4 +52,6 @@ body {
 
 #pageLayout{
   max-width: 70vw;
+}
+
 }

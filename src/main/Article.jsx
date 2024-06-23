@@ -51,7 +51,7 @@ function Article() {
         <Header />
       </header>
       <div className="article-container">
-         <span className='title'>{article.title}</span> 
+         <span className='title font-serif'>{article.title}</span> 
         <Spacer y={4} />
         <p className='lead'>{article.lead}</p>
         <Spacer y={4} />
@@ -67,7 +67,7 @@ function Article() {
         <Spacer y={4} />
         <div className="article-content">
         {paragraphs.map((paragraph, index) => (
-            <React.Fragment key={index}>
+            <React.Fragment className="font-sans" key={index}>
              <ReactMarkdown
                 remarkPlugins={[remarkGfm, remarkBreaks, remarkHtml, remarkMath, remarkSlug, remarkToc]}
                 rehypePlugins={[rehypeKatex, rehypeRaw]}>
