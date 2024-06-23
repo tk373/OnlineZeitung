@@ -53,7 +53,7 @@ function Article() {
       <div className="article-container">
          <span className='title'>{article.title}</span> 
         <Spacer y={4} />
-        <p>{article.lead}</p>
+        <p className='lead'>{article.lead}</p>
         <Spacer y={4} />
         {article.default_image_url && (
           <Image

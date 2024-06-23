@@ -30,6 +30,9 @@
   
   .article-content {
     width: 100%;
+    font-family: var(--font-paragraph);
+    font-size: 1.8rem;
+    line-height: 3rem;
   }
 
   h2{
@@ -44,6 +47,13 @@
   .title{
     font-size: 4.9rem;
     line-height: 5.2rem;
-    font-family: "Source Serif Pro", "Times New Roman", Helvetica, serif;
+    font-family: var(--font-title);
     font-weight: 600;
+  }
+  
+  .lead{
+    font-size: 2rem;
+    line-height: 2.9rem;
+    font-weight: 400;
+    font-family: var(--font-lead);
   }

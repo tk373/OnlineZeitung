@@ -40,7 +40,7 @@ function Register() {
           nachname: nachname,
         });
       }
-      alert('Registration successful! Check your email for the confirmation link.');
+      alert('Registration ist erfolgreich, bitte bestätigen Sie Ihre Email mit dem Link, den wir Ihnen gesendet haben.');
       navigate('/Home');
     } catch (error) {
       alert(`Error: ${error.message}`);
@@ -57,11 +57,12 @@ function Register() {
     </header>
     <div style={{ maxWidth: '300px', margin: 'auto' }}>
         <Input
+        required="True"
       isClearable
       type="email"
       label="Email"
       variant="bordered"
-      placeholder="Enter your email"
+      placeholder="Geben Sie Ihre Email ein"
       value={email}
       onChange={(e) => setEmail(e.target.value)}
       onClear={() => setEmail("")}
@@ -71,7 +72,7 @@ function Register() {
         <Input
           label="Name"
           variant="bordered"
-          placeholder="Enter your name"
+          placeholder="Geben Sie Ihren Vornamen ein"
           value={name}
           onChange={(e) => setName(e.target.value)}
           className="max-w-xs"
@@ -80,7 +81,7 @@ function Register() {
         <Input
           label="Nachname"
           variant="bordered"
-          placeholder="Enter your nachname"
+          placeholder="Geben Sie Ihren Nachnamen ein"
           value={nachname}
           onChange={(e) => setNachname(e.target.value)}
           className="max-w-xs"
@@ -89,7 +90,7 @@ function Register() {
       <Input
       label="Password"
       variant="bordered"
-      placeholder="Enter your password"
+      placeholder="Setzen Sie Ihr Passwort"
       endContent={
         <button className="focus:outline-none" type="button" onClick={toggleVisibility}>
           {isVisible ? (

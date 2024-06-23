@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Serif+Pro&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -6,6 +8,7 @@
   font-family: "Source Serif Pro", "Times New Roman", Helvetica, serif;
   line-height: 1.5;
   font-weight: 400;
+  font-size: 10px;
   
   height: 100vh;
   width: 100vw;
@@ -26,11 +29,14 @@
   --secondary: #d4b192;
   --accent: #d4955f; 
 
+  --font-title: "Source Serif Pro","Times New Roman",Helvetica,serif;
+  --font-paragraph: "Noto Serif","Times New Roman",Helvetica,serif;
+  --font-lead: "IBM Plex Sans","Helvetica",Arial,Verdana,Helvetica,sans-serif;
+
   
 }
 
 a {
-  font-weight: 500;
   color: #646cff;
   text-decoration: inherit;
 }
@@ -48,9 +54,4 @@ body {
 
 #pageLayout{
   max-width: 70vw;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
 }
