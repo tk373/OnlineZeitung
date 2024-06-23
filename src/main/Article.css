@@ -19,7 +19,6 @@
     max-width: 800px;
     margin: 0 auto;
     padding: 20px;
-    font-size: large;
     font-weight: 500;
   }
 
@@ -32,11 +31,6 @@
   .article-content {
     width: 100%;
   }
-  
-  h1 {
-    text-align: center;
-    font-weight: bold;
-  }
 
   h2{
     font-weight: bold !important;
@@ -45,4 +39,11 @@
   
   p {
     text-align: left;
+  }
+
+  .title{
+    font-size: 4.9rem;
+    line-height: 5.2rem;
+    font-family: "Source Serif Pro", "Times New Roman", Helvetica, serif;
+    font-weight: 600;
   }

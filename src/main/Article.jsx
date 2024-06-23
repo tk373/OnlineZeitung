@@ -51,7 +51,7 @@ function Article() {
         <Header />
       </header>
       <div className="article-container">
-        <h1>{article.title}</h1>
+         <span className='title'>{article.title}</span> 
         <Spacer y={4} />
         <p>{article.lead}</p>
         <Spacer y={4} />
