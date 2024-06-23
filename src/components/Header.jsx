@@ -64,7 +64,7 @@ function Header() {
     <>
       <header className="header">
         <div className="logo">
-          <a href="/">
+          <a href="/Home">
             <img src="../../Logo2.svg" alt="Logo" width="70" height="100" />
           </a>
         </div>

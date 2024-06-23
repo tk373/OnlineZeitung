@@ -40,7 +40,7 @@ function Article() {
   }, [title]);
 
   if (!article) {
-    return <div>Loading...</div>;
+    return <div>Loading...Not Found</div>;
   }
 
   const paragraphs = article.body.split('\n\n');
@@ -55,9 +55,9 @@ function Article() {
         <Spacer y={4} />
         <p>{article.lead}</p>
         <Spacer y={4} />
-        {article.image_url && (
+        {article.default_image_url && (
           <Image
-            src={article.image_url}
+            src={article.default_image_url}
             alt="Article image"
             width="100%"
             height="auto"
@@ -70,11 +70,12 @@ function Article() {
             <React.Fragment key={index}>
              <ReactMarkdown
                 remarkPlugins={[remarkGfm, remarkBreaks, remarkHtml, remarkMath, remarkSlug, remarkToc]}
-                rehypePlugins={[rehypeKatex, rehypeRaw]}
-              >
+                rehypePlugins={[rehypeKatex, rehypeRaw]}>
                {paragraph}
               </ReactMarkdown>
-              {index < paragraphs.length - 1 && <Spacer y={10} />}
+              {index < paragraphs.length - 1 && (
+                <Spacer y={getNextElementSpacer(paragraphs[index])} />
+              )}
             </React.Fragment>
           ))}
         </div>
@@ -82,6 +83,15 @@ function Article() {
       <Footer />
     </div>
   );
+}
+
+function getNextElementSpacer(nextParagraph) {
+  if (nextParagraph.startsWith('<h2>') || nextParagraph.startsWith('![')) {
+    console.log(nextParagraph);
+    return 2;
+  }
+  console.log(nextParagraph);
+  return 10;
 }
 
 export default Article;
