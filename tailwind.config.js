@@ -8,7 +8,12 @@ module.exports = {
     "./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}"
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        serif: ['Source Serif Pro', 'Times New Roman', 'Helvetica', 'serif'],
+        sans: ['IBM Plex Sans', 'Helvetica', 'Arial', 'Verdana', 'sans-serif'],
+      },
+    },
   },
   darkMode: "class",
   plugins: [nextui()]

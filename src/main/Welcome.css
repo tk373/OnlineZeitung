@@ -55,16 +55,17 @@
   }
   
   h1 {
-      color: var(--secondary); /* Makes the title stand out */
+    font-weight: bold;
+    font-family: "Source Serif Pro", "Times New Roman", Helvetica, serif;
   }
   
   p {
       color: var(--text); /* Ensures paragraph text is easily readable */
   }
   
-  body, h1, p, a {
+  body, p, a {
     color: var(--text); /* This applies the text color universally */
-    font-family: Cambria, Cochin, New Roman, serif;
+    font-family: "Noto Serif", "Times New Roman", Helvetica, serif;
 }
 
 .textSegment {
@@ -75,4 +76,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+}
+.welcome{
+  margin: 0 auto;
 }

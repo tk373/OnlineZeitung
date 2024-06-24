@@ -19,6 +19,7 @@
     max-width: 800px;
     margin: 0 auto;
     padding: 20px;
+    font-weight: 500;
   }
 
   .article-image {
@@ -29,14 +30,29 @@
   
   .article-content {
     width: 100%;
+    font-size: 1.125rem;
+    line-height: 1.8rem;
   }
-  
-  h1 {
-    text-align: center;
-    margin-bottom: 10px;
+
+  h2{
+    font-weight: bold !important;
+    font-size: x-large !important;
   }
   
   p {
     text-align: left;
-    margin-bottom: 20px;
+  }
+
+  .title{
+    font-size: 3rem;
+    line-height: 3.25rem;
+    font-family: var(--font-title);
+    font-weight:bold !important;
+  }
+  
+  .lead{
+    font-size: 1.25rem;
+    line-height: 1.8rem;
+    font-weight: 400;
+    font-family: var(--font-lead);
   }

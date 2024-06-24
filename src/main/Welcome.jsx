@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react'
 import './Welcome.css'
 import Header from '../components/Header.jsx'
 import Footer from '../components/Footer.jsx'
-import Article from '../Pages/Article.jsx'
 import { db } from '../firebaseClient'; // Import Firestore database
 import { collection, getDocs, query, orderBy } from 'firebase/firestore';
 import { Card, CardHeader, CardBody, CardFooter, Divider, Image } from "@nextui-org/react";
@@ -44,8 +43,8 @@ function Welcome() {
       <div className="mainContent">
         <Card Card className="textSegment">
           <CardHeader>
-            <div className="flex flex-col">
-              <h1 className="text-7xl">Herzlich willkomme uf de Homepage vo de Poscht</h1>
+            <div className="flex text-center w-full">
+              <h1 className="text-7xl welcome">Willkommen bei der Poscht</h1>
             </div>
           </CardHeader>
         </Card>
@@ -57,12 +56,12 @@ function Welcome() {
           const [date, time] = article.created_at?.split('T') || ['', ''];
           const formattedTime = time.split('.')[0];
           return (
-            <Link to={`/article/${toUrlFriendly(article.title)}`} key={article.id} style={{ textDecoration: 'none' }}>
+            <Link to={`/Home/article/${toUrlFriendly(article.title)}`} key={article.id} style={{ textDecoration: 'none' }}>
             <Card key={article.id} hoverable clickable>
               <CardHeader className="flex items-center justify-between">
-                {article.image_url && (
+                {article.default_image_url && (
                   <Image
-                    src={article.image_url}
+                    src={article.default_image_url}
                     alt="Article image"
                     width="100%"
                     height="auto"
