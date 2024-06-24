@@ -4,7 +4,7 @@ import supabase from '../supabaseClient';
 import { Button, Input, Spacer, Tabs, Tab } from '@nextui-org/react';
 import { db } from '../firebaseClient';
 import { doc, getDoc } from 'firebase/firestore';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { FaLock } from 'react-icons/fa';
 
 function Header() {
@@ -12,6 +12,7 @@ function Header() {
   const [userTier, setUserTier] = useState(null);
   const [session, setSession] = useState(null);
   const location = useLocation();
+  const navigate = useNavigate();
 
   const tierPriority = {
     'user': 1,
@@ -63,16 +64,16 @@ function Header() {
     <>
       <header className="header">
         <div className="logo">
-          <a href="/">
-            <img src="../Logo2.svg" alt="Logo" width="70" height="100" />
+          <a href="/Home">
+            <img src="../../Logo2.svg" alt="Logo" width="70" height="100" />
           </a>
         </div>
-        <div>
-          <Tabs selectedKey={location.pathname} aria-label="Tabs">
-          <Tab key="/" href="/" title="D'Poscht" />
-          <Tab key="/Community" href="/Community" title="Community" />
+        <div className='MiddleNavigation'>
+          <Tabs selectedKey={location.pathname.split('/')[1]} aria-label="Tabs">
+          <Tab key="Home" href="/Home" title="D'Poscht"/>
+          <Tab key="Community" href="/Community" title="Community" />
         </Tabs>
-        <Button color="primary" startContent={<FaLock />}>
+        <Button color="primary" onClick={() => navigate('/abo')} startContent={<FaLock />}>
         Abo
         </Button></div>
         <button className="menu-toggle" onClick={toggleMenu}>Menu</button>

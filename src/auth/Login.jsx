@@ -31,7 +31,7 @@ function Login() {
     } catch (error) {
       alert(`Error: ${error.message}`);
     } finally {
-      navigate("/");
+      navigate("/Home");
     }
   };
 
@@ -79,6 +79,7 @@ function Login() {
       >
         {loading ? 'Loading...' : 'Login'}
       </Button>
+      <p>Haben Sie noch kein Konto, eröffnen Sie eins <a href='/register'>Hier</a></p>
       </Card>
     </div>
         <Footer/>
