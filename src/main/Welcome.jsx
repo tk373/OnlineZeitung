@@ -43,7 +43,7 @@ function Welcome() {
       <div className="mainContent">
         <Card Card className="textSegment">
           <CardHeader>
-            <div className="flex text-center w-full">
+            <div className="flex text-center w-full"> 
               <h1 className="text-7xl welcome">Willkommen bei der Poscht</h1>
             </div>
           </CardHeader>
