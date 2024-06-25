@@ -41,7 +41,7 @@ function Register() {
         });
       }
       alert('Registration ist erfolgreich, bitte bestätigen Sie Ihre Email mit dem Link, den wir Ihnen gesendet haben.');
-      navigate('/Home');
+      navigate('/Login');
     } catch (error) {
       alert(`Error: ${error.message}`);
     } finally {

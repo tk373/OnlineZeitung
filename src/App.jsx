@@ -13,9 +13,9 @@ import Article from './main/Article.jsx';
 import UnauthorizedPage from './auth/unauthorized.jsx';
 import Layout from './assets/Layout.jsx';
 import Community from './community/CommunityHome.jsx';
+import { Navigate } from 'react-router-dom';
 
 function App() {
-  
 
   return (
     <Layout>
@@ -27,9 +27,10 @@ function App() {
         <Route path='/Generate' element={<AuthGuard requiredTier="abo"><Generate /></AuthGuard>} />
         <Route path='/Register' element={<Register />} />
         <Route path='/Login' element={<Login />} />
-        <Route path="/Home/article/:title" element={<Article />} />
+        <Route path="/Home/article/:title" element={<AuthGuard><Article /></AuthGuard>} />
         <Route path="/unauthorized" element={<UnauthorizedPage />} />
         <Route path="/Community" element={<Community />} />
+        <Route path="/" element={<Navigate to="/home" replace />} />
       </Routes>
     </Layout>
   )
