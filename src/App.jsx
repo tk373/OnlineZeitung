@@ -27,7 +27,7 @@ function App() {
         <Route path='/Generate' element={<AuthGuard requiredTier="abo"><Generate /></AuthGuard>} />
         <Route path='/Register' element={<Register />} />
         <Route path='/Login' element={<Login />} />
-        <Route path="/Home/article/:title" element={<AuthGuard><Article /></AuthGuard>} />
+        <Route path="/Home/article/:title" element={<AuthGuard requiredTier="abo"><Article /></AuthGuard>} />
         <Route path="/unauthorized" element={<UnauthorizedPage />} />
         <Route path="/Community" element={<Community />} />
         <Route path="/" element={<Navigate to="/home" replace />} />
