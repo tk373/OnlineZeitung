@@ -88,3 +88,8 @@ justify-content: flex-end;
 .becomeAuthor{
   width: 100%;
 }
+
+
+.articlesContainer{
+  margin-top: -4px;
+}

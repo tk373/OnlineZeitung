@@ -50,7 +50,6 @@ function Header() {
     return () => subscription.unsubscribe();
   }, []);
 
-
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
@@ -59,7 +58,21 @@ function Header() {
     let { error } = await supabase.auth.signOut();
     if (error) console.log('Logout error:', error.message);
   };
-  
+
+  const getSelectedKey = () => {
+    const path = location.pathname.split('/')[1];
+    if (['home', 'about', 'add'].includes(path.toLowerCase())) {
+      return 'Home';
+    }
+    if (['community'].includes(path.toLowerCase())) {
+      return 'Community';
+    }
+    if (['abo', 'generate'].includes(path.toLowerCase())) {
+      return 'Abo';
+    }
+    return '';
+  };
+
   return (
     <>
       <header className="header">
@@ -69,13 +82,14 @@ function Header() {
           </a>
         </div>
         <div className='MiddleNavigation'>
-          <Tabs selectedKey={location.pathname.split('/')[1]} aria-label="Tabs">
-          <Tab key="Home" href="/Home" title="D'Poscht"/>
-          <Tab key="Community" href="/Community" title="Community" />
-        </Tabs>
-        <Button color="primary" onClick={() => navigate('/abo')} startContent={<FaLock />}>
-        Abo
-        </Button></div>
+          <Tabs selectedKey={getSelectedKey()} aria-label="Tabs">
+            <Tab key="Home" href="/Home" title="D'Poscht"/>
+            <Tab key="Community" href="/Community" title="Community" />
+          </Tabs>
+          <Button color="primary" onClick={() => navigate('/abo')} startContent={<FaLock />}>
+            Abo
+          </Button>
+        </div>
         <button className="menu-toggle" onClick={toggleMenu}>Menu</button>
         <div className={`menu ${isMenuOpen ? 'open' : 'closed'}`}>
           <Spacer y={1} />
@@ -83,9 +97,9 @@ function Header() {
           <a href="/About" className="menu-item">Über eus</a>
           <a href="/Abo" className="menu-item">Abo</a>
           {userTier && tierPriority[userTier] >= tierPriority['abo'] && (
-             <>
-             <a href="/Generate" className="menu-item">Generiere</a>
-           </>
+            <>
+              <a href="/Generate" className="menu-item">Generiere</a>
+            </>
           )}
           {userTier && tierPriority[userTier] >= tierPriority['author'] && (
             <>

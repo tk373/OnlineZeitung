@@ -65,13 +65,13 @@ function Community() {
 
       <div className="bodyContainer">
         <div className='titleContainer'>
-          <h1 className='text-2xl'>Beste Artikel von der Community von</h1>
+          <h1 className='text-2xl mt-2'>Beste Artikel von der Community von</h1>
 
           <Dropdown>
             <DropdownTrigger>
               <Button
                 variant="light"
-                className="text-2xl -mt-1"
+                className="text-2xl mt-1"
               >
                 {selectedValue}
               </Button>
